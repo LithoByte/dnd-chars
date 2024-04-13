@@ -50,7 +50,7 @@ struct PointsView: View {
                 Spacer()
                 VStack {
                     HStack {
-                        Text("Max \(store.title): \(store.maxPoints)")
+                        Text("Max: \(store.maxPoints)")
                             .foregroundStyle(.secondary)
                     }
                     VStack {
@@ -58,7 +58,7 @@ struct PointsView: View {
                             .foregroundStyle(Color.accentColor)
                             .font(.largeTitle)
                             .padding(.vertical, 4)
-                        Text("Current \(store.title)")
+                        Text("\(store.title)")
                             .foregroundStyle(Color.accentColor)
                     }
                     .onTapGesture {

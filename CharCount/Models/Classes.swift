@@ -14,6 +14,73 @@ public struct ClassLevel: Codable, Equatable, Identifiable, Hashable {
 }
 
 public enum ClassEnum: String, Codable, Equatable, CaseIterable, Hashable { case barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard }
+
+extension ClassEnum {
+    func resources(at level: Int) -> [PointSource] {
+        switch self {
+        case .barbarian:
+            switch level {
+            case _ where level < 1: return []
+            case 1...2: return [PointSource(title: "Rage", currentPoints: 2, maxPoints: 2, pointsType: .other)]
+            case 3...5: return [PointSource(title: "Rage", currentPoints: 3, maxPoints: 3, pointsType: .other)]
+            case 6...11: return [PointSource(title: "Rage", currentPoints: 4, maxPoints: 4, pointsType: .other)]
+            case 12...16: return [PointSource(title: "Rage", currentPoints: 5, maxPoints: 5, pointsType: .other)]
+            case 17...19: return [PointSource(title: "Rage", currentPoints: 6, maxPoints: 6, pointsType: .other)]
+            default: return []
+            }
+        case .bard: break /// need cha modifier for bardic
+        case .cleric:
+            switch level {
+            case 2...5: return [PointSource(title: "Channel Divinity", currentPoints: 1, maxPoints: 1, pointsType: .other)]
+            case 6...17: return [PointSource(title: "Channel Divinity", currentPoints: 2, maxPoints: 2, pointsType: .other)]
+            case _ where level > 17: return [PointSource(title: "Channel Divinity", currentPoints: 3, maxPoints: 3, pointsType: .other)]
+            default: return []
+            }
+        case .druid:
+            switch level {
+            case 2...19: return [PointSource(title: "Wild Shape", currentPoints: 2, maxPoints: 2, pointsType: .other)]
+            default: return []
+            }
+        case .fighter:
+            switch level {
+            case 1: return [PointSource(title: "Second Wind", currentPoints: 1, maxPoints: 1, pointsType: .other)]
+            case 2...8: return [PointSource(title: "Second Wind", currentPoints: 1, maxPoints: 1, pointsType: .other), PointSource(title: "Action Surge", currentPoints: 1, maxPoints: 1, pointsType: .other)]
+            case 9...12: return [PointSource(title: "Second Wind", currentPoints: 1, maxPoints: 1, pointsType: .other), PointSource(title: "Action Surge", currentPoints: 1, maxPoints: 1, pointsType: .other), PointSource(title: "Indomitable", currentPoints: 1, maxPoints: 1, pointsType: .other)]
+            case 13...16: return [PointSource(title: "Second Wind", currentPoints: 1, maxPoints: 1, pointsType: .other), PointSource(title: "Action Surge", currentPoints: 1, maxPoints: 1, pointsType: .other), PointSource(title: "Indomitable", currentPoints: 2, maxPoints: 2, pointsType: .other)]
+            case _ where level > 16: return [PointSource(title: "Second Wind", currentPoints: 1, maxPoints: 1, pointsType: .other), PointSource(title: "Action Surge", currentPoints: 2, maxPoints: 2, pointsType: .other), PointSource(title: "Indomitable", currentPoints: 3, maxPoints: 3, pointsType: .other)]
+            default: return []
+            }
+        case .monk:
+            if level > 20 {
+                return [PointSource(title: "Ki Points", currentPoints: 20, maxPoints: 20, pointsType: .other)]
+            } else if level > 2 {
+                return [PointSource(title: "Ki Points", currentPoints: level, maxPoints: level, pointsType: .other)]
+            }
+        case .paladin:
+            /// need cha modifier for divine sense (1 + Cha)
+            var resources = [PointSource(title: "Lay on Hands", currentPoints: 5 * level, maxPoints: 5 * level, pointsType: .other)]
+            switch level {
+            case 3...6: resources.append(PointSource(title: "Channel Divinity", currentPoints: 1, maxPoints: 1, pointsType: .other))
+            case 7...14: resources.append(PointSource(title: "Channel Divinity", currentPoints: 2, maxPoints: 2, pointsType: .other))
+            case _ where level > 14: resources.append(PointSource(title: "Channel Divinity", currentPoints: 3, maxPoints: 3, pointsType: .other))
+            default: break
+            }
+            return resources
+        case .ranger, .rogue: return []
+        case .sorcerer: 
+            if level > 20 {
+                return [PointSource(title: "Sorcery Points", currentPoints: 20, maxPoints: 20, pointsType: .other)]
+            } else if level > 2 {
+                return [PointSource(title: "Sorcery Points", currentPoints: level, maxPoints: level, pointsType: .other)]
+            }
+        case .warlock: return []
+        case .wizard:
+            return [PointSource(title: "Arcane Recovery", currentPoints: 1, maxPoints: 1, pointsType: .other)]
+        }
+        return []
+    }
+}
+
 public extension ClassEnum {
     func spellCastingAbility() -> Ability {
         switch self {
@@ -43,34 +110,27 @@ public extension ClassEnum {
             return Ability.INT
         }
     }
-    
-    func hitDie() -> Die {
-        switch self {
-        case .barbarian:
-            return Die.d12
-        case .bard:
-            return Die.d8
-        case .cleric:
-            return Die.d8
-        case .druid:
-            return Die.d8
-        case .fighter:
-            return Die.d10
-        case .monk:
-            return Die.d8
-        case .paladin:
-            return Die.d10
-        case .ranger:
-            return Die.d10
-        case .rogue:
-            return Die.d8
-        case .sorcerer:
-            return Die.d6
-        case .warlock:
-            return Die.d8
-        case .wizard:
-            return Die.d6
+}
+
+extension Character {
+    func classResources() -> [PointSource] {
+        var calcResources = [PointSource]()
+        for levels in self.levels {
+            calcResources.append(contentsOf: levels.classEnum.resources(at: levels.count))
         }
+        return calcResources
+    }
+    
+    mutating func levelUpResources() {
+        resources = leveledUpResources()
+    }
+    
+    func leveledUpResources() -> [PointSource] {
+        var newResources = classResources()
+        let titles = newResources.map { $0.title }
+        let oldResources = resources.filter { !titles.contains($0.title) }
+        newResources.append(contentsOf: oldResources)
+        return newResources
     }
 }
 

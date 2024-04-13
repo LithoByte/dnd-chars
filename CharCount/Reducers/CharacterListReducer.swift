@@ -76,11 +76,12 @@ struct CharacterListReducer {
             case .saveCharacter:
                 if let new = state.new {
                     let levels = [new.firstSetOfLevels, new.secondSetOfLevels, new.thirdSetOfLevels, new.fourthSetOfLevels].compactMap({ $0 })
-                    let newChar = Character(name: new.name,
+                    var newChar = Character(name: new.name,
                                             levels: levels,
                                             abilityScores: [AbilityScore(ability: .CON, score: Int(new.conScore)!)],
                                             usesSpellPoints: new.usesSpellPoints,
                                             isTough: new.isTough)
+                    newChar.levelUpResources()
                     state.allCharacters.append(newChar)
                 }
                 if let edit = state.edit {
@@ -91,6 +92,7 @@ struct CharacterListReducer {
                         newChar.levels = levels
                         newChar.abilityScores = [AbilityScore(ability: .CON, score: Int(edit.conScore)!)]
                         newChar.usesSpellPoints = edit.usesSpellPoints
+                        newChar.levelUpResources()
                         newChar.isTough = edit.isTough
                         state.allCharacters[id: newChar.id] = newChar
                         state.edit = nil

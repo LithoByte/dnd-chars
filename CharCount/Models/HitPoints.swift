@@ -52,3 +52,34 @@ extension Character {
         return hitPoints
     }
 }
+
+extension ClassEnum {
+    func hitDie() -> Die {
+        switch self {
+        case .barbarian:
+            return Die.d12
+        case .bard:
+            return Die.d8
+        case .cleric:
+            return Die.d8
+        case .druid:
+            return Die.d8
+        case .fighter:
+            return Die.d10
+        case .monk:
+            return Die.d8
+        case .paladin:
+            return Die.d10
+        case .ranger:
+            return Die.d10
+        case .rogue:
+            return Die.d8
+        case .sorcerer:
+            return Die.d6
+        case .warlock:
+            return Die.d8
+        case .wizard:
+            return Die.d6
+        }
+    }
+}
