@@ -20,6 +20,7 @@ struct Character: Codable, Identifiable, Equatable, Hashable {
     var spellSlots = [SlotLevel]()
     var spellPoints: PointSource?
     var usesSpellPoints: Bool = false
+    var resources = [PointSource]()
     var isTough: Bool
 }
 

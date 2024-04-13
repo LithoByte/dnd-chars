@@ -42,6 +42,10 @@
 		49889B0D2BC6E39400B8F15B /* SpellCasting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B0C2BC6E39400B8F15B /* SpellCasting.swift */; };
 		49889B0F2BC6E43A00B8F15B /* HitPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B0E2BC6E43A00B8F15B /* HitPoints.swift */; };
 		49889B112BC6F02500B8F15B /* SpellSlotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B102BC6F02500B8F15B /* SpellSlotsView.swift */; };
+		49889B132BC9EA7800B8F15B /* HitPointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B122BC9EA7800B8F15B /* HitPointsTests.swift */; };
+		49889B152BC9EEA900B8F15B /* CharacterListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B142BC9EEA900B8F15B /* CharacterListTests.swift */; };
+		49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B162BC9FC6800B8F15B /* SplashView.swift */; };
+		49889B192BCA050C00B8F15B /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B182BCA050C00B8F15B /* ResourcesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,10 @@
 		49889B0C2BC6E39400B8F15B /* SpellCasting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCasting.swift; sourceTree = "<group>"; };
 		49889B0E2BC6E43A00B8F15B /* HitPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitPoints.swift; sourceTree = "<group>"; };
 		49889B102BC6F02500B8F15B /* SpellSlotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsView.swift; sourceTree = "<group>"; };
+		49889B122BC9EA7800B8F15B /* HitPointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitPointsTests.swift; sourceTree = "<group>"; };
+		49889B142BC9EEA900B8F15B /* CharacterListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTests.swift; sourceTree = "<group>"; };
+		49889B162BC9FC6800B8F15B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		49889B182BCA050C00B8F15B /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				49889AB72BC23F2E00B8F15B /* CharCountTests.swift */,
+				49889B122BC9EA7800B8F15B /* HitPointsTests.swift */,
+				49889B142BC9EEA900B8F15B /* CharacterListTests.swift */,
 			);
 			path = CharCountTests;
 			sourceTree = "<group>";
@@ -201,6 +211,8 @@
 				49889AFB2BC4570E00B8F15B /* EditPointsView.swift */,
 				49889AFD2BC458AD00B8F15B /* EditSourceView.swift */,
 				49889B102BC6F02500B8F15B /* SpellSlotsView.swift */,
+				49889B162BC9FC6800B8F15B /* SplashView.swift */,
+				49889B182BCA050C00B8F15B /* ResourcesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -395,8 +407,10 @@
 				49889AEF2BC312A000B8F15B /* CharacterItemReducer.swift in Sources */,
 				49889ADA2BC2400D00B8F15B /* HitPointsView.swift in Sources */,
 				49889AFA2BC3469200B8F15B /* EditLevelsView.swift in Sources */,
+				49889B192BCA050C00B8F15B /* ResourcesView.swift in Sources */,
 				49889AEE2BC312A000B8F15B /* CharacterDetailReducer.swift in Sources */,
 				49889AF62BC312A000B8F15B /* EditCharacterView.swift in Sources */,
+				49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */,
 				49889ADC2BC2402100B8F15B /* SpellPointsView.swift in Sources */,
 				49889AE22BC2E44600B8F15B /* PointsReducer.swift in Sources */,
 			);
@@ -406,6 +420,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49889B152BC9EEA900B8F15B /* CharacterListTests.swift in Sources */,
+				49889B132BC9EA7800B8F15B /* HitPointsTests.swift in Sources */,
 				49889AB82BC23F2E00B8F15B /* CharCountTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

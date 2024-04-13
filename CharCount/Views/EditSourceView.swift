@@ -18,6 +18,8 @@ struct EditSourceReducer {
         var currentPoints: String
         var maxPoints: String
         var pointsType: PointsType
+        
+        var isPoints = true
     }
     
     enum Action: BindableAction, Equatable {
@@ -47,7 +49,7 @@ struct EditSourceView: View {
             HStack {
                 Text("Name: ")
                 Spacer()
-                TextField("Temporary Hit Points", text: $store.name)
+                TextField("Resource Name", text: $store.name)
                     .textInputAutocapitalization(.words)
                     .frame(maxWidth: 160)
                     .multilineTextAlignment(.trailing)
@@ -74,23 +76,25 @@ struct EditSourceView: View {
             .padding(.horizontal, 16)
             .padding(.top, 8)
             
-            HStack {
-                Text("Type: ")
-                Spacer()
-                Picker("Type", selection: $store.pointsType.sending(\.changedPointsType)) {
-                    ForEach(PointsType.allCases, id: \.self) {
-                        Text($0.rawValue).tag(Optional($0))
+            if store.isPoints {
+                HStack {
+                    Text("Type: ")
+                    Spacer()
+                    Picker("Type", selection: $store.pointsType.sending(\.changedPointsType)) {
+                        ForEach(PointsType.allCases, id: \.self) {
+                            Text($0.rawValue).tag(Optional($0))
+                        }
                     }
                 }
-            }
-            .padding(.horizontal, 16)
-            ScrollView {
-                Text("""
-- Use "innate" for your regular hit points, if the ones calculated are incorrect for some reason.
-- Use "additional" for effects like the Aid spell, which increase your regular hit points by a certain amount.
-- Use "temporary" for temp HP.
-- Use "other" for things like Arcane Ward, which are not healed by regular means.
-""").padding()
+                .padding(.horizontal, 16)
+                ScrollView {
+                    Text("""
+    - Use "innate" for your regular hit points, if the ones calculated are incorrect for some reason.
+    - Use "additional" for effects like the Aid spell, which increase your regular hit points by a certain amount.
+    - Use "temporary" for temp HP.
+    - Use "other" for things like Arcane Ward, which are not healed by regular means.
+    """).padding()
+                }
             }
         }
     }

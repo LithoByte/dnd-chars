@@ -25,8 +25,8 @@ struct HitPointsReducer {
     enum Action: Equatable {
         case source(PointsReducer.State.ID, PointsReducer.Action)
         case addTapped, saveTapped, cancelTapped
-        case adjustHitPointsTapped
         case restoreTapped
+        case adjustHitPointsTapped
         case addPoints
         case removePoints
         case delete(IndexSet)

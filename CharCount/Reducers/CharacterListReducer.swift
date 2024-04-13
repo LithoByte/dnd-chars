@@ -127,6 +127,9 @@ struct CharacterListReducer {
             case .details(.presented(.delegate(.saveHitPoints(let id, let hitPoints)))):
                 state.allCharacters[id: id]?.hpSources = hitPoints
                 save(state.allCharacters.elements)
+            case .details(.presented(.delegate(.saveResources(let id, let resources)))):
+                state.allCharacters[id: id]?.resources = resources
+                save(state.allCharacters.elements)
             case .details(_): break
             }
             return .none

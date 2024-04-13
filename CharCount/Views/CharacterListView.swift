@@ -87,6 +87,7 @@ struct CharacterListView<RowContent: View,
         return switch store.details?.currentTab {
         case .hitPoints, nil: .accent
         case .spellSlots, .spellPoints: .indigo
+        case .resources: .brown
         }
     }
 }

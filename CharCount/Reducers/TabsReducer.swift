@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 enum Tab: Equatable {
-    case hitPoints, spellPoints, spellSlots
+    case hitPoints, spellPoints, spellSlots, resources
 }
 
 @Reducer
@@ -22,6 +22,7 @@ struct TabsReducer {
         var hpState: HitPointsReducer.State
         var spState: SpellPointsReducer.State?
         var slotsState: SpellSlotsReducer.State?
+        var resourceState: ResourcesReducer.State
         
         init(_ character: inout Character) {
             id = character.id
@@ -45,6 +46,7 @@ struct TabsReducer {
                     slotsState = SpellSlotsReducer.State(slots: character.maxSpellSlots().map { SlotLevel(level: $0.level, slots: $0.slots) })
                 }
             }
+            resourceState = ResourcesReducer.State(sources: IdentifiedArray<UUID, PointsReducer.State>(uniqueElements: character.resources))
         }
     }
     
@@ -53,17 +55,20 @@ struct TabsReducer {
         case hpTab(HitPointsReducer.Action)
         case spTab(SpellPointsReducer.Action)
         case slotsTab(SpellSlotsReducer.Action)
+        case resourceTab(ResourcesReducer.Action)
         case delegate(Delegate)
         
         enum Delegate: Equatable {
             case saveSpellPoints(Character.ID, PointSource)
             case saveHitPoints(Character.ID, [PointSource])
             case saveSpellSlots(Character.ID, [SlotLevel])
+            case saveResources(Character.ID, [PointSource])
         }
     }
     
     var body: some Reducer<State, Action> {
         Scope(state: \.hpState, action: \.hpTab, child: { HitPointsReducer() })
+        Scope(state: \.resourceState, action: \.resourceTab, child: { ResourcesReducer() })
         Reduce { state, action in
             switch action {
             case .tabSelected(let tab):
@@ -74,6 +79,8 @@ struct TabsReducer {
                 return .send(.delegate(.saveSpellPoints(state.id, state.spState!.source)))
             case .slotsTab(_):
                 return .send(.delegate(.saveSpellSlots(state.id, state.slotsState!.slots)))
+            case .resourceTab(_):
+                return .send(.delegate(.saveResources(state.id, state.resourceState.sources.elements)))
             case .delegate(_):
                 break
             }

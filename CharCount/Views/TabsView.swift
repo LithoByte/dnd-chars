@@ -41,6 +41,14 @@ struct TabsView: View {
                 }
                 .tag(Tab.spellSlots)
             }
+            ResourcesView(store: store.scope(state: \.resourceState, action: \.resourceTab))
+            .tabItem {
+                VStack {
+                    Image(systemName: "briefcase.fill")
+                    Text("Resources")
+                }
+            }
+            .tag(Tab.resources)
         }
         .navigationTitle(store.name)
     }
