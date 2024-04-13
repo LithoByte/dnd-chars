@@ -225,6 +225,11 @@ extension Character {
         return SpellSlot.totalSlots(forCasterLevels: casterLevels(), warlockLevels: levels.first { $0.classEnum == .warlock }?.count ?? 0)
     }
     
+    func spellSaveDC() -> Int {
+        let dcs = levels.compactMap { $0.classEnum.spellCastingAbility() }.map { 8 + proficiencyBonus() + modifier(for: $0) }
+        return dcs.max() ?? 8 + proficiencyBonus()
+    }
+    
     func maxSpellPoints() -> Int {
         return Character.maxSpellPoints(for: casterLevels())
     }

@@ -77,10 +77,18 @@ struct CharacterListReducer {
                 if let new = state.new {
                     let levels = [new.firstSetOfLevels, new.secondSetOfLevels, new.thirdSetOfLevels, new.fourthSetOfLevels].compactMap({ $0 })
                     var newChar = Character(name: new.name,
+                                            armorClass: Int(new.ac)!,
                                             levels: levels,
                                             abilityScores: [AbilityScore(ability: .CON, score: Int(new.conScore)!)],
                                             usesSpellPoints: new.usesSpellPoints,
-                                            isTough: new.isTough)
+                                            skillProficiencies: new.hasPerProficiency ? [.perception] : [],
+                                            isTough: new.isTough,
+                                            isObservant: new.isObservant)
+                    if let con = Int(new.conScore), let int = Int(new.intScore), let wis = Int(new.wisScore), let cha = Int(new.chaScore) {
+                        newChar.abilityScores = [AbilityScore(ability: .CON, score: con), AbilityScore(ability: .INT, score: int), AbilityScore(ability: .WIS, score: wis), AbilityScore(ability: .CHA, score: cha)]
+                    } else if let con = Int(new.conScore) {
+                        newChar.abilityScores = [AbilityScore(ability: .CON, score: con)]
+                    }
                     newChar.levelUpResources()
                     state.allCharacters.append(newChar)
                 }
@@ -89,10 +97,17 @@ struct CharacterListReducer {
                         let levels = [edit.firstSetOfLevels, edit.secondSetOfLevels, edit.thirdSetOfLevels, edit.fourthSetOfLevels].compactMap({ $0 })
                         var newChar = oldChar
                         newChar.name = edit.name
+                        newChar.armorClass = Int(edit.ac)!
                         newChar.levels = levels
-                        newChar.abilityScores = [AbilityScore(ability: .CON, score: Int(edit.conScore)!)]
+                        if let con = Int(edit.conScore), let int = Int(edit.intScore), let wis = Int(edit.wisScore), let cha = Int(edit.chaScore) {
+                            newChar.abilityScores = [AbilityScore(ability: .CON, score: con), AbilityScore(ability: .INT, score: int), AbilityScore(ability: .WIS, score: wis), AbilityScore(ability: .CHA, score: cha)]
+                        } else if let con = Int(edit.conScore) {
+                            newChar.abilityScores = [AbilityScore(ability: .CON, score: con)]
+                        }
                         newChar.usesSpellPoints = edit.usesSpellPoints
                         newChar.levelUpResources()
+                        newChar.skillProficiencies = edit.hasPerProficiency ? [.perception] : []
+                        newChar.isObservant = edit.isObservant
                         newChar.isTough = edit.isTough
                         state.allCharacters[id: newChar.id] = newChar
                         state.edit = nil

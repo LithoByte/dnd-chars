@@ -13,11 +13,12 @@ public struct ClassLevel: Codable, Equatable, Identifiable, Hashable {
     var count: Int
 }
 
-public enum ClassEnum: String, Codable, Equatable, CaseIterable, Hashable { case barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard }
+public enum ClassEnum: String, Codable, Equatable, CaseIterable, Hashable { case artificer, barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard }
 
 extension ClassEnum {
     func resources(at level: Int) -> [PointSource] {
         switch self {
+        case .artificer: return []
         case .barbarian:
             switch level {
             case _ where level < 1: return []
@@ -28,7 +29,7 @@ extension ClassEnum {
             case 17...19: return [PointSource(title: "Rage", currentPoints: 6, maxPoints: 6, pointsType: .other)]
             default: return []
             }
-        case .bard: break /// need cha modifier for bardic
+        case .bard: return []
         case .cleric:
             switch level {
             case 2...5: return [PointSource(title: "Channel Divinity", currentPoints: 1, maxPoints: 1, pointsType: .other)]
@@ -82,10 +83,12 @@ extension ClassEnum {
 }
 
 public extension ClassEnum {
-    func spellCastingAbility() -> Ability {
+    func spellCastingAbility() -> Ability? {
         switch self {
-        case .barbarian:
+        case .artificer:
             return Ability.INT
+        case .barbarian:
+            return nil
         case .bard:
             return Ability.CHA
         case .cleric:
@@ -117,6 +120,12 @@ extension Character {
         var calcResources = [PointSource]()
         for levels in self.levels {
             calcResources.append(contentsOf: levels.classEnum.resources(at: levels.count))
+        }
+        if let _ = levels.first(where: { $0.classEnum == .bard })?.count, let chaScore = abilityScores.first(where: { $0.ability == .CHA })?.score {
+            calcResources.append(PointSource(title: "Bardic Inspiration", currentPoints: max(1, modifier(for: .CHA)), maxPoints: max(1, modifier(for: .CHA)), pointsType: .other))
+        }
+        if let _ = levels.first(where: { $0.classEnum == .paladin })?.count, let chaScore = abilityScores.first(where: { $0.ability == .CHA })?.score {
+            calcResources.append(PointSource(title: "Divine Sense", currentPoints: max(1, 1 + modifier(for: .CHA)), maxPoints: max(1, 1 + modifier(for: .CHA)), pointsType: .other))
         }
         return calcResources
     }

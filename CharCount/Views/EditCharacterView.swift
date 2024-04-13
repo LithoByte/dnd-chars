@@ -14,12 +14,40 @@ struct EditCharacterView: View {
     var body: some View {
         WithPerceptionTracking {
             VStack {
-                TextField("Character name", text: $store.name)
-                    .padding()
-                TextField("Con score", text: $store.conScore)
-                    .padding()
+                HStack {
+                    TextField("Character Name", text: $store.name)
+                        .textInputAutocapitalization(.words)
+                        .padding(8)
+                    TextField("AC", text: $store.ac)
+                        .keyboardType(.numberPad)
+                        .padding(8)
+                }
+                .padding(.horizontal, 8)
+                HStack {
+                    TextField("CON score", text: $store.conScore)
+                        .keyboardType(.numberPad)
+                        .padding(8)
+                    TextField("INT score", text: $store.intScore)
+                        .keyboardType(.numberPad)
+                        .padding(8)
+                    TextField("WIS score", text: $store.wisScore)
+                        .keyboardType(.numberPad)
+                        .padding(8)
+                    TextField("CHA score", text: $store.chaScore)
+                        .keyboardType(.numberPad)
+                        .padding(8)
+                }
+                .padding(.horizontal, 8)
                 Toggle(isOn: $store.isTough, label: {
                     Text("Has 'Tough' feat:")
+                })
+                .padding(.horizontal, 16)
+                Toggle(isOn: $store.isObservant, label: {
+                    Text("Has 'Observant' feat:")
+                })
+                .padding(.horizontal, 16)
+                Toggle(isOn: $store.hasPerProficiency, label: {
+                    Text("Has proficiency in Perception:")
                 })
                 .padding(.horizontal, 16)
                 Toggle(isOn: $store.usesSpellPoints, label: {

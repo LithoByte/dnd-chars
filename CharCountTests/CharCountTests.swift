@@ -22,6 +22,10 @@ final class CharCountTests: XCTestCase {
         XCTAssertEqual(try bekri.maxHitPoints(), 60)
     }
     
+    func testBekriDC() throws {
+        XCTAssertEqual(bekri.spellSaveDC(), 17)
+    }
+    
     func testBekriSpellLevel() throws {
         XCTAssertEqual(bekri.maxSpellLevel(), 6)
     }

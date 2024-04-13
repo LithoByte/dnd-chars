@@ -56,6 +56,8 @@ extension Character {
 extension ClassEnum {
     func hitDie() -> Die {
         switch self {
+        case .artificer:
+            return .d8
         case .barbarian:
             return Die.d12
         case .bard:

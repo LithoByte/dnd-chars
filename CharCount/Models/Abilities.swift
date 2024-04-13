@@ -23,3 +23,45 @@ extension Character {
         return (abilityScores.first(where: { $0.ability == ability })!.score - 10) / 2
     }
 }
+
+public enum Skill: String, Codable, CaseIterable, Equatable, Hashable { case acrobatics, animalHandling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleightOfHand, stealth, survival }
+public func ability(for skill: Skill) -> Ability {
+    switch skill {
+    case .acrobatics:
+        return Ability.DEX
+    case .animalHandling:
+        return Ability.WIS
+    case .arcana:
+        return Ability.INT
+    case .athletics:
+        return Ability.STR
+    case .deception:
+        return Ability.CHA
+    case .history:
+        return Ability.INT
+    case .insight:
+        return Ability.WIS
+    case .intimidation:
+        return Ability.CHA
+    case .investigation:
+        return Ability.INT
+    case .medicine:
+        return Ability.WIS
+    case .nature:
+        return Ability.INT
+    case .perception:
+        return Ability.WIS
+    case .performance:
+        return Ability.CHA
+    case .persuasion:
+        return Ability.CHA
+    case .religion:
+        return Ability.INT
+    case .sleightOfHand:
+        return Ability.DEX
+    case .stealth:
+        return Ability.DEX
+    case .survival:
+        return Ability.WIS
+    }
+}

@@ -10,14 +10,28 @@ import ComposableArchitecture
 
 extension Character {
     func toEditState() -> EditCharacterReducer.State {
+        let conScore = abilityScores.first(where: { $0.ability == .CON })?.score
+        let intScore = abilityScores.first(where: { $0.ability == .INT })?.score
+        let wisScore = abilityScores.first(where: { $0.ability == .WIS })?.score
+        let chaScore = abilityScores.first(where: { $0.ability == .CHA })?.score
+        let conString = conScore != nil ? "\(conScore!)" : ""
+        let intString = intScore != nil ? "\(intScore!)" : ""
+        let wisString = wisScore != nil ? "\(wisScore!)" : ""
+        let chaString = chaScore != nil ? "\(chaScore!)" : ""
         return EditCharacterReducer.State(id: id,
                                           name: name,
-                                          conScore: "\(abilityScores.first(where: { $0.ability == .CON })?.score ?? 0)",
+                                          ac: "\(armorClass)",
+                                          conScore: conString,
+                                          intScore: intString,
+                                          wisScore: wisString,
+                                          chaScore: chaString,
                                           firstSetOfLevels: levels.first,
                                           secondSetOfLevels: levels.count > 1 ? levels[1] : nil,
                                           thirdSetOfLevels: levels.count > 2 ? levels[2] : nil,
                                           fourthSetOfLevels: levels.count > 3 ? levels[3] : nil,
                                           usesSpellPoints: usesSpellPoints,
+                                          hasPerProficiency: skillProficiencies.contains(.perception),
+                                          isObservant: isObservant,
                                           isTough: isTough
         )
     }
@@ -29,13 +43,19 @@ struct EditCharacterReducer {
     public struct State: Equatable {
         var id: Character.ID?
         var name: String
+        var ac: String = ""
         var conScore: String = ""
+        var intScore: String = ""
+        var wisScore: String = ""
+        var chaScore: String = ""
         // technically, you can only multiclass 4 times
         var firstSetOfLevels: ClassLevel?
         var secondSetOfLevels: ClassLevel?
         var thirdSetOfLevels: ClassLevel?
         var fourthSetOfLevels: ClassLevel?
-        var usesSpellPoints = true
+        var usesSpellPoints = false
+        var hasPerProficiency = false
+        var isObservant: Bool = false
         var isTough: Bool = false
     }
     
@@ -56,13 +76,13 @@ struct EditCharacterReducer {
                 break
             case .addLevels:
                 if let _ = state.firstSetOfLevels {
-                    state.secondSetOfLevels = ClassLevel(classEnum: .barbarian, count: 0)
+                    state.secondSetOfLevels = ClassLevel(classEnum: .artificer, count: 0)
                 } else if let _ = state.secondSetOfLevels {
-                    state.thirdSetOfLevels = ClassLevel(classEnum: .barbarian, count: 0)
+                    state.thirdSetOfLevels = ClassLevel(classEnum: .artificer, count: 0)
                 } else if let _ = state.thirdSetOfLevels {
-                    state.fourthSetOfLevels = ClassLevel(classEnum: .barbarian, count: 0)
+                    state.fourthSetOfLevels = ClassLevel(classEnum: .artificer, count: 0)
                 } else {
-                    state.firstSetOfLevels = ClassLevel(classEnum: .barbarian, count: 0)
+                    state.firstSetOfLevels = ClassLevel(classEnum: .artificer, count: 0)
                 }
             case .firstLevels(_), .secondLevels(_), .thirdLevels(_), .fourthLevels(_): break
             }
