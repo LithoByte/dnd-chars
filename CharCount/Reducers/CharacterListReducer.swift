@@ -29,6 +29,7 @@ struct CharacterListReducer {
         @Presents var new: EditCharacterReducer.State?
         @Presents var edit: EditCharacterReducer.State?
         @Presents var details: TabsReducer.State?
+        @Presents var games: GameReducer.State?
         
         var characterToItemState: (Character) -> CharacterItemReducer.State
         var characterToSearchableString: ((Character) -> String)? = { "\($0.name) \($0.levels.map { $0.classEnum.rawValue }.joined(separator: " "))" }
@@ -53,6 +54,7 @@ struct CharacterListReducer {
     }
     
     enum Action: Equatable, BindableAction {
+        case gamesTapped
         case addNewTapped
         case saveCharacter, cancelCharacter
         case didAppear
@@ -65,12 +67,16 @@ struct CharacterListReducer {
         case new(PresentationAction<EditCharacterReducer.Action>)
         case edit(PresentationAction<EditCharacterReducer.Action>)
         case details(PresentationAction<TabsReducer.Action>)
+        case games(PresentationAction<GameReducer.Action>)
     }
     
     var body: some Reducer<State, Action> {
         BindingReducer()
         Reduce { state, action in
             switch action {
+            case .gamesTapped:
+                state.games = GameReducer.State(gameTitle: "Elliot's Game", allCreatures: IdentifiedArray(uniqueElements: creatures))
+            case .games(_): break
             case .addNewTapped:
                 state.new = EditCharacterReducer.State(name: "")
             case .saveCharacter:
@@ -159,6 +165,9 @@ struct CharacterListReducer {
         }
         .ifLet(\.$details, action: \.details) {
             TabsReducer()
+        }
+        .ifLet(\.$games, action: \.games) {
+            GameReducer()
         }
         .forEach(\.allCharacters, action: /CharacterListReducer.Action.character(_:_:)) {
             CharacterItemReducer()

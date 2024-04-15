@@ -22,6 +22,18 @@ extension Character {
     func modifier(for ability: Ability) -> Int {
         return (abilityScores.first(where: { $0.ability == ability })!.score - 10) / 2
     }
+    
+    func passivePerception() -> Int {
+        var passivePerception = 10
+        passivePerception += modifier(for: .WIS)
+        if skillProficiencies.contains(.perception) {
+            passivePerception += proficiencyBonus()
+        }
+        if isObservant {
+            passivePerception += 5
+        }
+        return passivePerception
+    }
 }
 
 public enum Skill: String, Codable, CaseIterable, Equatable, Hashable { case acrobatics, animalHandling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleightOfHand, stealth, survival }

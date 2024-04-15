@@ -37,6 +37,9 @@ struct CharacterListView<RowContent: View,
                         Button(action: { store.send(.addNewTapped) }, label: {
                             Image(systemName: "plus")
                         })
+                        Button(action: { store.send(.gamesTapped) }, label: {
+                            Image(systemName: "person.3.fill")
+                        })
                     }
                 })
                 .onAppear {
@@ -44,6 +47,9 @@ struct CharacterListView<RowContent: View,
                 }
                 .navigationDestination(item: $store.scope(state: \.details, action: \.details)) { store in
                     detailsContent(store)
+                }
+                .navigationDestination(item: $store.scope(state: \.games, action: \.games)) { store in
+                    GameView(store: store)
                 }
                 .sheet(item: $store.scope(state: \.new, action: \.new)) { editStore in
                     NavigationStack {

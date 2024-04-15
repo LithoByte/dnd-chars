@@ -14,7 +14,7 @@ struct CharCountApp: App {
         WindowGroup {
             CharacterListView(title: "Characters", store: Store(
                 initialState: CharacterListReducer.State(
-//                    allCharacters: IdentifiedArray(uniqueElements: [bekri, rowaren, rieta, nociel, jollian, haalgar, tasirinn, sosira, adeleor, beolac, ludreau]),
+                    allCharacters: IdentifiedArray(uniqueElements: [bekri, rowaren, rieta, nociel, jollian, haalgar, tasirinn, sosira, adeleor, beolac, ludreau, narak]),
                     characterToItemState: { $0 },
                     characterToSearchableString: { "\($0.name) \($0.levels.map { $0.classEnum.rawValue }.joined(separator: " "))" }
                 ),

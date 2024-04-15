@@ -46,6 +46,12 @@
 		49889B152BC9EEA900B8F15B /* CharacterListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B142BC9EEA900B8F15B /* CharacterListTests.swift */; };
 		49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B162BC9FC6800B8F15B /* SplashView.swift */; };
 		49889B192BCA050C00B8F15B /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B182BCA050C00B8F15B /* ResourcesView.swift */; };
+		49E33DFA2BCB151E00713ABF /* NPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DF92BCB151E00713ABF /* NPC.swift */; };
+		49E33DFC2BCB1E4E00713ABF /* NewNPCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */; };
+		49E33DFE2BCB4F0F00713ABF /* CharacterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */; };
+		49E33E002BCB533A00713ABF /* NPCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFF2BCB533A00713ABF /* NPCCardView.swift */; };
+		49E33E022BCB57D400713ABF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33E012BCB57D400713ABF /* CardView.swift */; };
+		49E33E042BCB5A6600713ABF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33E032BCB5A6600713ABF /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +113,12 @@
 		49889B142BC9EEA900B8F15B /* CharacterListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTests.swift; sourceTree = "<group>"; };
 		49889B162BC9FC6800B8F15B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		49889B182BCA050C00B8F15B /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		49E33DF92BCB151E00713ABF /* NPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPC.swift; sourceTree = "<group>"; };
+		49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNPCView.swift; sourceTree = "<group>"; };
+		49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardView.swift; sourceTree = "<group>"; };
+		49E33DFF2BCB533A00713ABF /* NPCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPCCardView.swift; sourceTree = "<group>"; };
+		49E33E012BCB57D400713ABF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		49E33E032BCB5A6600713ABF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +225,11 @@
 				49889B102BC6F02500B8F15B /* SpellSlotsView.swift */,
 				49889B162BC9FC6800B8F15B /* SplashView.swift */,
 				49889B182BCA050C00B8F15B /* ResourcesView.swift */,
+				49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */,
+				49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */,
+				49E33DFF2BCB533A00713ABF /* NPCCardView.swift */,
+				49E33E012BCB57D400713ABF /* CardView.swift */,
+				49E33E032BCB5A6600713ABF /* GameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +259,7 @@
 				49889B062BC6E34400B8F15B /* Dice.swift */,
 				49889B0E2BC6E43A00B8F15B /* HitPoints.swift */,
 				49889B0C2BC6E39400B8F15B /* SpellCasting.swift */,
+				49E33DF92BCB151E00713ABF /* NPC.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,9 +415,15 @@
 				49889AD42BC23FA300B8F15B /* TabsReducer.swift in Sources */,
 				49889B052BC6E2FF00B8F15B /* Character.swift in Sources */,
 				49889AF82BC3467500B8F15B /* EditLevelsReducer.swift in Sources */,
+				49E33E022BCB57D400713ABF /* CardView.swift in Sources */,
+				49E33E002BCB533A00713ABF /* NPCCardView.swift in Sources */,
 				49889B092BC6E35B00B8F15B /* Abilities.swift in Sources */,
 				49889B0F2BC6E43A00B8F15B /* HitPoints.swift in Sources */,
 				49889AF52BC312A000B8F15B /* EditCharacterReducer.swift in Sources */,
+				49E33DFC2BCB1E4E00713ABF /* NewNPCView.swift in Sources */,
+				49E33DFE2BCB4F0F00713ABF /* CharacterCardView.swift in Sources */,
+				49E33DFA2BCB151E00713ABF /* NPC.swift in Sources */,
+				49E33E042BCB5A6600713ABF /* GameView.swift in Sources */,
 				49889B0B2BC6E37700B8F15B /* Classes.swift in Sources */,
 				49889AF12BC312A000B8F15B /* CharacterListReducer.swift in Sources */,
 				49889B112BC6F02500B8F15B /* SpellSlotsView.swift in Sources */,
