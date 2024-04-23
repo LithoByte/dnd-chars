@@ -29,7 +29,7 @@ struct CharacterListReducer {
         @Presents var new: EditCharacterReducer.State?
         @Presents var edit: EditCharacterReducer.State?
         @Presents var details: TabsReducer.State?
-        @Presents var games: GameReducer.State?
+        @Presents var games: GameListReducer.State?
         
         var characterToItemState: (Character) -> CharacterItemReducer.State
         var characterToSearchableString: ((Character) -> String)? = { "\($0.name) \($0.levels.map { $0.classEnum.rawValue }.joined(separator: " "))" }
@@ -53,7 +53,7 @@ struct CharacterListReducer {
         }
     }
     
-    enum Action: Equatable, BindableAction {
+    enum Action: BindableAction {
         case gamesTapped
         case addNewTapped
         case saveCharacter, cancelCharacter
@@ -67,7 +67,7 @@ struct CharacterListReducer {
         case new(PresentationAction<EditCharacterReducer.Action>)
         case edit(PresentationAction<EditCharacterReducer.Action>)
         case details(PresentationAction<TabsReducer.Action>)
-        case games(PresentationAction<GameReducer.Action>)
+        case games(PresentationAction<GameListReducer.Action>)
     }
     
     var body: some Reducer<State, Action> {
@@ -75,7 +75,7 @@ struct CharacterListReducer {
         Reduce { state, action in
             switch action {
             case .gamesTapped:
-                state.games = GameReducer.State(gameTitle: "Elliot's Game", allCreatures: IdentifiedArray(uniqueElements: creatures))
+                state.games = GameListReducer.State(allGames: IdentifiedArray(uniqueElements: []), gameToItemState: { $0 })
             case .games(_): break
             case .addNewTapped:
                 state.new = EditCharacterReducer.State(name: "")
@@ -119,20 +119,21 @@ struct CharacterListReducer {
                         state.edit = nil
                     }
                 }
+                save(state.allCharacters.elements)
                 state.new = nil
             case .cancelCharacter:
                 state.new = nil
                 state.edit = nil
             case .didAppear: break
             case .didChangeScenePhase:
-                saveUnique(state.allCharacters.elements)
+                save(state.allCharacters.elements)
             case .didShowCharacterIndex(_): break
             case .character(_, .delegate(.didTap(let character))):
                 state.details = TabsReducer.State(&state.allCharacters[id: character.id]!)
             case .character(_, .delegate(.edit(let character))):
                 state.edit = state.allCharacters[id: character.id]!.toEditState()
             case .delete(let indexSet):
-                let displayed = state.displayedCharacterStates//state.sources.remove(atOffsets: indexSet)
+                let displayed = state.displayedCharacterStates
                 let deletedIds = indexSet.map { displayed[$0].id }
                 state.allCharacters.removeAll {
                     deletedIds.contains($0.id)
@@ -167,7 +168,7 @@ struct CharacterListReducer {
             TabsReducer()
         }
         .ifLet(\.$games, action: \.games) {
-            GameReducer()
+            GameListReducer()
         }
         .forEach(\.allCharacters, action: /CharacterListReducer.Action.character(_:_:)) {
             CharacterItemReducer()
@@ -195,19 +196,19 @@ func matchesWordsPrefixes(_ search: String, _ text: String) -> Bool {
 
 func loadData() -> [Character] {
     if let data = UserDefaults.standard.data(forKey: "characters"),
-        let phrases = try? JSONDecoder().decode([Character].self, from: data) {
-        return phrases
+        let characters = try? JSONDecoder().decode([Character].self, from: data) {
+        return characters
     }
     return []
 }
 
-func saveUnique(_ characters: [Character]) {
-    var data = loadData()
-    data.append(contentsOf: characters)
-    let characterSet = Set(data)
-    let saveData = Array(characterSet)
-    save(saveData)
-}
+//func saveUnique(_ characters: [Character]) {
+//    var data = loadData()
+//    data.append(contentsOf: characters)
+//    let characterSet = Set(data)
+//    let saveData = Array(characterSet)
+//    save(saveData)
+//}
 
 func save(_ characters: [Character]) {
     try? UserDefaults.standard.set(JSONEncoder().encode(characters), forKey: "characters")

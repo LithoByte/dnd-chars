@@ -51,6 +51,15 @@ struct TabsView: View {
             .tag(Tab.resources)
         }
         .navigationTitle(store.name)
+        .accentColor(viewAccentColor())
+    }
+    
+    func viewAccentColor() -> Color {
+        return switch store.currentTab {
+        case .hitPoints: .accent
+        case .spellSlots, .spellPoints: .indigo
+        case .resources: .brown
+        }
     }
 }
 

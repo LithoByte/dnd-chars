@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49032B202BD35F5000A1500B /* CharacterChooserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49032B1F2BD35F5000A1500B /* CharacterChooserReducer.swift */; };
+		4917E21D2BD6CA4A006B92A8 /* ManualCharacterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E21C2BD6CA4A006B92A8 /* ManualCharacterCardView.swift */; };
+		4917E21F2BD6D8D2006B92A8 /* EditManualCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E21E2BD6D8D2006B92A8 /* EditManualCharacterView.swift */; };
+		497D7F942BCD702C003DA66E /* FCBCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F932BCD702C003DA66E /* FCBCentralManagerDelegate.swift */; };
+		497D7F962BCD703C003DA66E /* FCBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F952BCD703C003DA66E /* FCBPeripheralManager.swift */; };
+		497D7F982BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F972BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift */; };
+		497D7F9C2BCDFE30003DA66E /* BLECentralReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F9B2BCDFE30003DA66E /* BLECentralReducer.swift */; };
+		497D7F9E2BCDFE4D003DA66E /* BLEPeripheralManagerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F9D2BCDFE4D003DA66E /* BLEPeripheralManagerReducer.swift */; };
+		497D7FA02BCDFE60003DA66E /* BLEPeripheralManagerDelegateReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F9F2BCDFE60003DA66E /* BLEPeripheralManagerDelegateReducer.swift */; };
+		497D7FB62BD18FC9003DA66E /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FB22BD18FC9003DA66E /* GameRowView.swift */; };
+		497D7FB72BD18FC9003DA66E /* EditGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FB32BD18FC9003DA66E /* EditGameView.swift */; };
+		497D7FB92BD18FC9003DA66E /* GameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FB52BD18FC9003DA66E /* GameListView.swift */; };
+		497D7FBB2BD18FD3003DA66E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FBA2BD18FD3003DA66E /* Game.swift */; };
+		497D7FC02BD18FE8003DA66E /* EditGameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FBC2BD18FE8003DA66E /* EditGameReducer.swift */; };
+		497D7FC22BD18FE8003DA66E /* GameItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FBE2BD18FE8003DA66E /* GameItemReducer.swift */; };
+		497D7FC32BD18FE8003DA66E /* GameListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FBF2BD18FE8003DA66E /* GameListReducer.swift */; };
+		497D7FC92BD1BC65003DA66E /* GameReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FC82BD1BC65003DA66E /* GameReducer.swift */; };
+		497D7FCB2BD1D38E003DA66E /* FCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FCA2BD1D38E003DA66E /* FCLLocationManagerDelegate.swift */; };
+		497D7FCD2BD1D479003DA66E /* GameDetectorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FCC2BD1D479003DA66E /* GameDetectorReducer.swift */; };
+		497D7FCF2BD1D546003DA66E /* LocationDelegateReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FCE2BD1D546003DA66E /* LocationDelegateReducer.swift */; };
+		497D7FD12BD2DA1C003DA66E /* FCBPeripheralDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FD02BD2DA1C003DA66E /* FCBPeripheralDelegate.swift */; };
+		497D7FD32BD2DC52003DA66E /* BLEPeripheralDelegateReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7FD22BD2DC52003DA66E /* BLEPeripheralDelegateReducer.swift */; };
 		49889AA72BC23F2D00B8F15B /* CharCountApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889AA62BC23F2D00B8F15B /* CharCountApp.swift */; };
 		49889AAB2BC23F2E00B8F15B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49889AAA2BC23F2E00B8F15B /* Assets.xcassets */; };
 		49889AAE2BC23F2E00B8F15B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49889AAD2BC23F2E00B8F15B /* Preview Assets.xcassets */; };
@@ -46,6 +68,7 @@
 		49889B152BC9EEA900B8F15B /* CharacterListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B142BC9EEA900B8F15B /* CharacterListTests.swift */; };
 		49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B162BC9FC6800B8F15B /* SplashView.swift */; };
 		49889B192BCA050C00B8F15B /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B182BCA050C00B8F15B /* ResourcesView.swift */; };
+		499E5B772BD30B53003AC672 /* CentralReducerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E5B762BD30B53003AC672 /* CentralReducerExtension.swift */; };
 		49E33DFA2BCB151E00713ABF /* NPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DF92BCB151E00713ABF /* NPC.swift */; };
 		49E33DFC2BCB1E4E00713ABF /* NewNPCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */; };
 		49E33DFE2BCB4F0F00713ABF /* CharacterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */; };
@@ -72,6 +95,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49032B1F2BD35F5000A1500B /* CharacterChooserReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterChooserReducer.swift; sourceTree = "<group>"; };
+		4917E21C2BD6CA4A006B92A8 /* ManualCharacterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCharacterCardView.swift; sourceTree = "<group>"; };
+		4917E21E2BD6D8D2006B92A8 /* EditManualCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditManualCharacterView.swift; sourceTree = "<group>"; };
+		497D7F932BCD702C003DA66E /* FCBCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBCentralManagerDelegate.swift; sourceTree = "<group>"; };
+		497D7F952BCD703C003DA66E /* FCBPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBPeripheralManager.swift; sourceTree = "<group>"; };
+		497D7F972BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBPeripheralManagerDelegate.swift; sourceTree = "<group>"; };
+		497D7F9B2BCDFE30003DA66E /* BLECentralReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLECentralReducer.swift; sourceTree = "<group>"; };
+		497D7F9D2BCDFE4D003DA66E /* BLEPeripheralManagerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPeripheralManagerReducer.swift; sourceTree = "<group>"; };
+		497D7F9F2BCDFE60003DA66E /* BLEPeripheralManagerDelegateReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPeripheralManagerDelegateReducer.swift; sourceTree = "<group>"; };
+		497D7FB22BD18FC9003DA66E /* GameRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
+		497D7FB32BD18FC9003DA66E /* EditGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGameView.swift; sourceTree = "<group>"; };
+		497D7FB52BD18FC9003DA66E /* GameListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListView.swift; sourceTree = "<group>"; };
+		497D7FBA2BD18FD3003DA66E /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		497D7FBC2BD18FE8003DA66E /* EditGameReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGameReducer.swift; sourceTree = "<group>"; };
+		497D7FBE2BD18FE8003DA66E /* GameItemReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameItemReducer.swift; sourceTree = "<group>"; };
+		497D7FBF2BD18FE8003DA66E /* GameListReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListReducer.swift; sourceTree = "<group>"; };
+		497D7FC82BD1BC65003DA66E /* GameReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameReducer.swift; sourceTree = "<group>"; };
+		497D7FCA2BD1D38E003DA66E /* FCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
+		497D7FCC2BD1D479003DA66E /* GameDetectorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetectorReducer.swift; sourceTree = "<group>"; };
+		497D7FCE2BD1D546003DA66E /* LocationDelegateReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegateReducer.swift; sourceTree = "<group>"; };
+		497D7FD02BD2DA1C003DA66E /* FCBPeripheralDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBPeripheralDelegate.swift; sourceTree = "<group>"; };
+		497D7FD22BD2DC52003DA66E /* BLEPeripheralDelegateReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPeripheralDelegateReducer.swift; sourceTree = "<group>"; };
+		497D7FD42BD2E320003DA66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		49889AA32BC23F2D00B8F15B /* CharCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49889AA62BC23F2D00B8F15B /* CharCountApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharCountApp.swift; sourceTree = "<group>"; };
 		49889AAA2BC23F2E00B8F15B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +159,7 @@
 		49889B142BC9EEA900B8F15B /* CharacterListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTests.swift; sourceTree = "<group>"; };
 		49889B162BC9FC6800B8F15B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		49889B182BCA050C00B8F15B /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		499E5B762BD30B53003AC672 /* CentralReducerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralReducerExtension.swift; sourceTree = "<group>"; };
 		49E33DF92BCB151E00713ABF /* NPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPC.swift; sourceTree = "<group>"; };
 		49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNPCView.swift; sourceTree = "<group>"; };
 		49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardView.swift; sourceTree = "<group>"; };
@@ -147,6 +194,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		497D7F922BCD6FD5003DA66E /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				497D7F932BCD702C003DA66E /* FCBCentralManagerDelegate.swift */,
+				497D7F952BCD703C003DA66E /* FCBPeripheralManager.swift */,
+				497D7F972BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift */,
+				497D7FD02BD2DA1C003DA66E /* FCBPeripheralDelegate.swift */,
+				497D7F9B2BCDFE30003DA66E /* BLECentralReducer.swift */,
+				497D7F9D2BCDFE4D003DA66E /* BLEPeripheralManagerReducer.swift */,
+				497D7F9F2BCDFE60003DA66E /* BLEPeripheralManagerDelegateReducer.swift */,
+				497D7FCA2BD1D38E003DA66E /* FCLLocationManagerDelegate.swift */,
+				497D7FCE2BD1D546003DA66E /* LocationDelegateReducer.swift */,
+				497D7FD22BD2DC52003DA66E /* BLEPeripheralDelegateReducer.swift */,
+				499E5B762BD30B53003AC672 /* CentralReducerExtension.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		497D7FC42BD18FED003DA66E /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				497D7FBF2BD18FE8003DA66E /* GameListReducer.swift */,
+				497D7FBC2BD18FE8003DA66E /* EditGameReducer.swift */,
+				497D7FBE2BD18FE8003DA66E /* GameItemReducer.swift */,
+				497D7FC82BD1BC65003DA66E /* GameReducer.swift */,
+				497D7FCC2BD1D479003DA66E /* GameDetectorReducer.swift */,
+				49032B1F2BD35F5000A1500B /* CharacterChooserReducer.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		497D7FC52BD18FF7003DA66E /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				49889AE82BC312A000B8F15B /* CharacterListReducer.swift */,
+				49889AE52BC312A000B8F15B /* CharacterDetailReducer.swift */,
+				49889AE62BC312A000B8F15B /* CharacterItemReducer.swift */,
+				49889AEC2BC312A000B8F15B /* EditCharacterReducer.swift */,
+				49889AF72BC3467500B8F15B /* EditLevelsReducer.swift */,
+				49889AD32BC23FA300B8F15B /* TabsReducer.swift */,
+				49889AD72BC23FFE00B8F15B /* HitPointsReducer.swift */,
+				49889ADD2BC2402E00B8F15B /* SpellPointsReducer.swift */,
+				49889AE12BC2E44600B8F15B /* PointsReducer.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		497D7FC62BD19021003DA66E /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */,
+				49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */,
+				49E33DFF2BCB533A00713ABF /* NPCCardView.swift */,
+				49E33E012BCB57D400713ABF /* CardView.swift */,
+				49E33E032BCB5A6600713ABF /* GameView.swift */,
+				497D7FB32BD18FC9003DA66E /* EditGameView.swift */,
+				497D7FB52BD18FC9003DA66E /* GameListView.swift */,
+				497D7FB22BD18FC9003DA66E /* GameRowView.swift */,
+				4917E21C2BD6CA4A006B92A8 /* ManualCharacterCardView.swift */,
+				4917E21E2BD6D8D2006B92A8 /* EditManualCharacterView.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		497D7FC72BD1902E003DA66E /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				49889AEA2BC312A000B8F15B /* CharacterListView.swift */,
+				49889AE92BC312A000B8F15B /* CharacterRowView.swift */,
+				49889AEB2BC312A000B8F15B /* CharacterDetailView.swift */,
+				49889AED2BC312A000B8F15B /* EditCharacterView.swift */,
+				49889AF92BC3469200B8F15B /* EditLevelsView.swift */,
+				49889AD52BC23FB200B8F15B /* TabsView.swift */,
+				49889AD92BC2400D00B8F15B /* HitPointsView.swift */,
+				49889ADB2BC2402100B8F15B /* SpellPointsView.swift */,
+				49889ADF2BC2E3F100B8F15B /* PointsView.swift */,
+				49889AFB2BC4570E00B8F15B /* EditPointsView.swift */,
+				49889AFD2BC458AD00B8F15B /* EditSourceView.swift */,
+				49889B102BC6F02500B8F15B /* SpellSlotsView.swift */,
+				49889B162BC9FC6800B8F15B /* SplashView.swift */,
+				49889B182BCA050C00B8F15B /* ResourcesView.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
 		49889A9A2BC23F2D00B8F15B = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +302,9 @@
 		49889AA52BC23F2D00B8F15B /* CharCount */ = {
 			isa = PBXGroup;
 			children = (
+				497D7FD42BD2E320003DA66E /* Info.plist */,
 				49889AA62BC23F2D00B8F15B /* CharCountApp.swift */,
+				497D7F922BCD6FD5003DA66E /* BLE */,
 				49889B032BC6E2DD00B8F15B /* Models */,
 				49889B012BC6E25800B8F15B /* Views */,
 				49889B022BC6E27E00B8F15B /* Reducers */,
@@ -211,25 +345,8 @@
 			children = (
 				49889AAA2BC23F2E00B8F15B /* Assets.xcassets */,
 				49889AFF2BC49F2400B8F15B /* Launch Screen.storyboard */,
-				49889AEB2BC312A000B8F15B /* CharacterDetailView.swift */,
-				49889AE92BC312A000B8F15B /* CharacterRowView.swift */,
-				49889AEA2BC312A000B8F15B /* CharacterListView.swift */,
-				49889AED2BC312A000B8F15B /* EditCharacterView.swift */,
-				49889AF92BC3469200B8F15B /* EditLevelsView.swift */,
-				49889AD52BC23FB200B8F15B /* TabsView.swift */,
-				49889AD92BC2400D00B8F15B /* HitPointsView.swift */,
-				49889ADB2BC2402100B8F15B /* SpellPointsView.swift */,
-				49889ADF2BC2E3F100B8F15B /* PointsView.swift */,
-				49889AFB2BC4570E00B8F15B /* EditPointsView.swift */,
-				49889AFD2BC458AD00B8F15B /* EditSourceView.swift */,
-				49889B102BC6F02500B8F15B /* SpellSlotsView.swift */,
-				49889B162BC9FC6800B8F15B /* SplashView.swift */,
-				49889B182BCA050C00B8F15B /* ResourcesView.swift */,
-				49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */,
-				49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */,
-				49E33DFF2BCB533A00713ABF /* NPCCardView.swift */,
-				49E33E012BCB57D400713ABF /* CardView.swift */,
-				49E33E032BCB5A6600713ABF /* GameView.swift */,
+				497D7FC72BD1902E003DA66E /* Characters */,
+				497D7FC62BD19021003DA66E /* Games */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,15 +354,8 @@
 		49889B022BC6E27E00B8F15B /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
-				49889AE52BC312A000B8F15B /* CharacterDetailReducer.swift */,
-				49889AE62BC312A000B8F15B /* CharacterItemReducer.swift */,
-				49889AE82BC312A000B8F15B /* CharacterListReducer.swift */,
-				49889AEC2BC312A000B8F15B /* EditCharacterReducer.swift */,
-				49889AF72BC3467500B8F15B /* EditLevelsReducer.swift */,
-				49889AD32BC23FA300B8F15B /* TabsReducer.swift */,
-				49889AD72BC23FFE00B8F15B /* HitPointsReducer.swift */,
-				49889ADD2BC2402E00B8F15B /* SpellPointsReducer.swift */,
-				49889AE12BC2E44600B8F15B /* PointsReducer.swift */,
+				497D7FC52BD18FF7003DA66E /* Characters */,
+				497D7FC42BD18FED003DA66E /* Games */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -253,6 +363,7 @@
 		49889B032BC6E2DD00B8F15B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				497D7FBA2BD18FD3003DA66E /* Game.swift */,
 				49889B082BC6E35B00B8F15B /* Abilities.swift */,
 				49889B042BC6E2FF00B8F15B /* Character.swift */,
 				49889B0A2BC6E37700B8F15B /* Classes.swift */,
@@ -402,40 +513,63 @@
 			buildActionMask = 2147483647;
 			files = (
 				49889AA72BC23F2D00B8F15B /* CharCountApp.swift in Sources */,
+				497D7F962BCD703C003DA66E /* FCBPeripheralManager.swift in Sources */,
+				497D7FCD2BD1D479003DA66E /* GameDetectorReducer.swift in Sources */,
 				49889AE02BC2E3F100B8F15B /* PointsView.swift in Sources */,
 				49889AFE2BC458AD00B8F15B /* EditSourceView.swift in Sources */,
+				497D7F982BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift in Sources */,
 				49889B0D2BC6E39400B8F15B /* SpellCasting.swift in Sources */,
+				497D7FB62BD18FC9003DA66E /* GameRowView.swift in Sources */,
 				49889ADE2BC2402E00B8F15B /* SpellPointsReducer.swift in Sources */,
 				49889AFC2BC4570E00B8F15B /* EditPointsView.swift in Sources */,
+				497D7F9E2BCDFE4D003DA66E /* BLEPeripheralManagerReducer.swift in Sources */,
 				49889AF42BC312A000B8F15B /* CharacterDetailView.swift in Sources */,
 				49889AD62BC23FB200B8F15B /* TabsView.swift in Sources */,
+				497D7FB72BD18FC9003DA66E /* EditGameView.swift in Sources */,
 				49889AF32BC312A000B8F15B /* CharacterListView.swift in Sources */,
 				49889AD82BC23FFE00B8F15B /* HitPointsReducer.swift in Sources */,
 				49889B072BC6E34400B8F15B /* Dice.swift in Sources */,
 				49889AD42BC23FA300B8F15B /* TabsReducer.swift in Sources */,
+				4917E21F2BD6D8D2006B92A8 /* EditManualCharacterView.swift in Sources */,
+				497D7FCB2BD1D38E003DA66E /* FCLLocationManagerDelegate.swift in Sources */,
 				49889B052BC6E2FF00B8F15B /* Character.swift in Sources */,
 				49889AF82BC3467500B8F15B /* EditLevelsReducer.swift in Sources */,
+				497D7F9C2BCDFE30003DA66E /* BLECentralReducer.swift in Sources */,
 				49E33E022BCB57D400713ABF /* CardView.swift in Sources */,
+				497D7F942BCD702C003DA66E /* FCBCentralManagerDelegate.swift in Sources */,
 				49E33E002BCB533A00713ABF /* NPCCardView.swift in Sources */,
 				49889B092BC6E35B00B8F15B /* Abilities.swift in Sources */,
 				49889B0F2BC6E43A00B8F15B /* HitPoints.swift in Sources */,
 				49889AF52BC312A000B8F15B /* EditCharacterReducer.swift in Sources */,
+				497D7FC22BD18FE8003DA66E /* GameItemReducer.swift in Sources */,
+				497D7FC02BD18FE8003DA66E /* EditGameReducer.swift in Sources */,
 				49E33DFC2BCB1E4E00713ABF /* NewNPCView.swift in Sources */,
 				49E33DFE2BCB4F0F00713ABF /* CharacterCardView.swift in Sources */,
+				497D7FD12BD2DA1C003DA66E /* FCBPeripheralDelegate.swift in Sources */,
 				49E33DFA2BCB151E00713ABF /* NPC.swift in Sources */,
 				49E33E042BCB5A6600713ABF /* GameView.swift in Sources */,
 				49889B0B2BC6E37700B8F15B /* Classes.swift in Sources */,
+				497D7FA02BCDFE60003DA66E /* BLEPeripheralManagerDelegateReducer.swift in Sources */,
 				49889AF12BC312A000B8F15B /* CharacterListReducer.swift in Sources */,
 				49889B112BC6F02500B8F15B /* SpellSlotsView.swift in Sources */,
 				49889AF22BC312A000B8F15B /* CharacterRowView.swift in Sources */,
+				49032B202BD35F5000A1500B /* CharacterChooserReducer.swift in Sources */,
 				49889AEF2BC312A000B8F15B /* CharacterItemReducer.swift in Sources */,
 				49889ADA2BC2400D00B8F15B /* HitPointsView.swift in Sources */,
 				49889AFA2BC3469200B8F15B /* EditLevelsView.swift in Sources */,
+				497D7FD32BD2DC52003DA66E /* BLEPeripheralDelegateReducer.swift in Sources */,
 				49889B192BCA050C00B8F15B /* ResourcesView.swift in Sources */,
 				49889AEE2BC312A000B8F15B /* CharacterDetailReducer.swift in Sources */,
 				49889AF62BC312A000B8F15B /* EditCharacterView.swift in Sources */,
 				49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */,
+				499E5B772BD30B53003AC672 /* CentralReducerExtension.swift in Sources */,
+				4917E21D2BD6CA4A006B92A8 /* ManualCharacterCardView.swift in Sources */,
+				497D7FBB2BD18FD3003DA66E /* Game.swift in Sources */,
+				497D7FC32BD18FE8003DA66E /* GameListReducer.swift in Sources */,
+				497D7FC92BD1BC65003DA66E /* GameReducer.swift in Sources */,
 				49889ADC2BC2402100B8F15B /* SpellPointsView.swift in Sources */,
+				497D7FCF2BD1D546003DA66E /* LocationDelegateReducer.swift in Sources */,
+				497D7FB92BD18FC9003DA66E /* GameListView.swift in Sources */,
 				49889AE22BC2E44600B8F15B /* PointsReducer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +739,13 @@
 				DEVELOPMENT_TEAM = HK6WSAR793;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CharCount/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -636,6 +777,13 @@
 				DEVELOPMENT_TEAM = HK6WSAR793;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CharCount/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -16,11 +16,13 @@ struct CardReducer {
         var id = Current.uuid()
         var character: Character?
         var npc: NPC?
+        var manualCharacter: ManualCharacter?
     }
     
     enum Action: Equatable {
         case character(CharacterItemReducer.Action)
         case npc(NPCReducer.Action)
+        case manualCharacter(ManualCharacterReducer.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -36,6 +38,9 @@ struct CardReducer {
         .ifLet(\.npc, action: \.npc) {
             NPCReducer()
         }
+        .ifLet(\.manualCharacter, action: \.manualCharacter) {
+            ManualCharacterReducer()
+        }
     }
 }
 
@@ -49,11 +54,15 @@ struct CardView: View {
         IfLetStore(store.scope(state: \.npc, action: \.npc)) { store in
             NPCCardView(store: store).accentColor(store.hp == 0 ? Color.secondary : .indigo)
         }
+        IfLetStore(store.scope(state: \.manualCharacter, action: \.manualCharacter)) { store in
+            ManualCharacterCardView(store: store).accentColor(.brown)
+        }
     }
 }
 
 let charCard = CardReducer.State(character: bekri)
 let npcCard = CardReducer.State(npc: archer)
+let manualCard = CardReducer.State(manualCharacter: ManualCharacter(name: "Bekri", ac: "21", dc: "17", pp: "18"))
 #Preview {
-    CardView(store: Store(initialState: npcCard, reducer: CardReducer.init))
+    CardView(store: Store(initialState: manualCard, reducer: CardReducer.init))
 }

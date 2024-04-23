@@ -78,6 +78,31 @@ struct Character: Codable, Identifiable, Equatable, Hashable {
     var skillProficiencies = [Skill]()
     var isTough: Bool = false
     var isObservant: Bool = false
+    
+    static func fromCard(_ cardCharacter: CardCharacter) -> Character {
+        var character = Character(name: cardCharacter.name, levels: cardCharacter.levels, abilityScores: cardCharacter.abilityScores)
+        character.id = cardCharacter.id
+        character.armorClass = cardCharacter.armorClass
+        character.skillProficiencies = cardCharacter.skillProficiencies
+        character.isTough = cardCharacter.isTough
+        character.isObservant = cardCharacter.isObservant
+        return character
+    }
+    
+    func toCard() -> CardCharacter {
+        return CardCharacter(id: id, name: name, armorClass: armorClass, levels: levels, abilityScores: abilityScores, skillProficiencies: skillProficiencies, isTough: isTough, isObservant: isObservant)
+    }
+}
+
+struct CardCharacter: Codable, Identifiable, Equatable {
+    var id: UUID
+    var name: String
+    var armorClass: Int = 10
+    var levels: [ClassLevel]
+    var abilityScores: [AbilityScore]
+    var skillProficiencies = [Skill]()
+    var isTough: Bool = false
+    var isObservant: Bool = false
 }
 
 extension Character {

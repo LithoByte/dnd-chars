@@ -23,11 +23,30 @@ struct CharacterListView<RowContent: View,
         WithPerceptionTracking {
             NavigationStack {
                 List {
-                    ForEachStore(self.store.scope(state: \.displayedCharacterStates, action: CharacterListReducer.Action.character(_:_:))) { characterStore in
-                        rowContent(characterStore)
-                    }
-                    .onDelete { indexSet in
-                        store.send(.delete(indexSet))
+                    if self.store.displayedCharacterStates.count > 0 {
+                        ForEachStore(self.store.scope(state: \.displayedCharacterStates, action: CharacterListReducer.Action.character(_:_:))) { characterStore in
+                            rowContent(characterStore)
+                        }
+                        .onDelete { indexSet in
+                            store.send(.delete(indexSet))
+                        }
+                    } else {
+                        VStack(alignment: .center) {
+                            Text("No characters yet!")
+                                .font(.title)
+                            Text("Add one with the button below or the '+' in the upper right corner.")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                            Button(action: { store.send(.addNewTapped) }, label: {
+                                Text("Add character")
+                                    .padding()
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke()
+                                    }
+                            })
+                        }
                     }
                 }
                 .navigationTitle(title)
@@ -49,7 +68,13 @@ struct CharacterListView<RowContent: View,
                     detailsContent(store)
                 }
                 .navigationDestination(item: $store.scope(state: \.games, action: \.games)) { store in
-                    GameView(store: store)
+                    GameListView(
+                        title: "Games",
+                        store: store,
+                        rowContent: GameRowView.init,
+                        detailsContent: GameView.init,
+                        editContent: EditGameView.init
+                    )
                 }
                 .sheet(item: $store.scope(state: \.new, action: \.new)) { editStore in
                     NavigationStack {
@@ -85,27 +110,16 @@ struct CharacterListView<RowContent: View,
                 store.send(.didChangeScenePhase)
             }
 //            .accentColor(LinearGradient(gradient: Gradient(colors: [.accent, .indigo]), startPoint: .leading, endPoint: .trailing))
-            .accentColor(viewAccentColor())
-        }
-    }
-    
-    func viewAccentColor() -> Color {
-        return switch store.details?.currentTab {
-        case .hitPoints, nil: .accent
-        case .spellSlots, .spellPoints: .indigo
-        case .resources: .brown
         }
     }
 }
 
-//let callState = NetCallReducer.State(session: Current.session, baseUrl: Current.baseUrl, endpoint: Endpoint(), pagingInfo: PagingMeta(perPage: 17), firingFunc: NetCallReducer.mockFire(with: json.data(using: .utf8)))
-//let charactersState = NetCharactersReducer<Character, CharactersWrapper>.State(characters: .init(), charactersCallState: callState, unwrap: { $0.characters })
 #Preview {
     CharacterListView(
         title: "Characters",
         store: Store(
             initialState: CharacterListReducer.State(
-                allCharacters: IdentifiedArray(uniqueElements: [bekri]),
+                allCharacters: IdentifiedArray(uniqueElements: []),
                 characterToItemState: { $0 }
             ),
             reducer: CharacterListReducer.init),

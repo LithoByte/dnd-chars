@@ -142,6 +142,9 @@ struct ResourcesView: View {
                 .padding()
                 .background(Color(UIColor.systemBackground))
                 .cornerRadius(8)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 1)
+                }
                 .padding()
                 Spacer()
             }
