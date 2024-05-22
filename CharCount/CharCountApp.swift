@@ -18,7 +18,7 @@ struct CharCountApp: App {
                     characterToItemState: { $0 },
                     characterToSearchableString: { "\($0.name) \($0.levels.map { $0.classEnum.rawValue }.joined(separator: " "))" }
                 ),
-                reducer: { CharacterListReducer()._printChanges() }),
+                reducer: { CharacterListReducer() }),
             rowContent: CharacterRowView.init,
             detailsContent: TabsView.init,
             editContent: EditCharacterView.init)

@@ -53,7 +53,7 @@ struct CharacterListReducer {
         }
     }
     
-    enum Action: BindableAction {
+    enum Action: BindableAction, Equatable {
         case gamesTapped
         case addNewTapped
         case saveCharacter, cancelCharacter

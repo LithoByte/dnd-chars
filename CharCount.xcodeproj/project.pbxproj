@@ -10,6 +10,7 @@
 		49032B202BD35F5000A1500B /* CharacterChooserReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49032B1F2BD35F5000A1500B /* CharacterChooserReducer.swift */; };
 		4917E21D2BD6CA4A006B92A8 /* ManualCharacterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E21C2BD6CA4A006B92A8 /* ManualCharacterCardView.swift */; };
 		4917E21F2BD6D8D2006B92A8 /* EditManualCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E21E2BD6D8D2006B92A8 /* EditManualCharacterView.swift */; };
+		4917E2212BDD440B006B92A8 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917E2202BDD440B006B92A8 /* GameTests.swift */; };
 		497D7F942BCD702C003DA66E /* FCBCentralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F932BCD702C003DA66E /* FCBCentralManagerDelegate.swift */; };
 		497D7F962BCD703C003DA66E /* FCBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F952BCD703C003DA66E /* FCBPeripheralManager.swift */; };
 		497D7F982BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D7F972BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift */; };
@@ -68,7 +69,6 @@
 		49889B152BC9EEA900B8F15B /* CharacterListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B142BC9EEA900B8F15B /* CharacterListTests.swift */; };
 		49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B162BC9FC6800B8F15B /* SplashView.swift */; };
 		49889B192BCA050C00B8F15B /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49889B182BCA050C00B8F15B /* ResourcesView.swift */; };
-		499E5B772BD30B53003AC672 /* CentralReducerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E5B762BD30B53003AC672 /* CentralReducerExtension.swift */; };
 		49E33DFA2BCB151E00713ABF /* NPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DF92BCB151E00713ABF /* NPC.swift */; };
 		49E33DFC2BCB1E4E00713ABF /* NewNPCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */; };
 		49E33DFE2BCB4F0F00713ABF /* CharacterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */; };
@@ -98,6 +98,7 @@
 		49032B1F2BD35F5000A1500B /* CharacterChooserReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterChooserReducer.swift; sourceTree = "<group>"; };
 		4917E21C2BD6CA4A006B92A8 /* ManualCharacterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCharacterCardView.swift; sourceTree = "<group>"; };
 		4917E21E2BD6D8D2006B92A8 /* EditManualCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditManualCharacterView.swift; sourceTree = "<group>"; };
+		4917E2202BDD440B006B92A8 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		497D7F932BCD702C003DA66E /* FCBCentralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBCentralManagerDelegate.swift; sourceTree = "<group>"; };
 		497D7F952BCD703C003DA66E /* FCBPeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBPeripheralManager.swift; sourceTree = "<group>"; };
 		497D7F972BCD7056003DA66E /* FCBPeripheralManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCBPeripheralManagerDelegate.swift; sourceTree = "<group>"; };
@@ -159,7 +160,6 @@
 		49889B142BC9EEA900B8F15B /* CharacterListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTests.swift; sourceTree = "<group>"; };
 		49889B162BC9FC6800B8F15B /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		49889B182BCA050C00B8F15B /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
-		499E5B762BD30B53003AC672 /* CentralReducerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralReducerExtension.swift; sourceTree = "<group>"; };
 		49E33DF92BCB151E00713ABF /* NPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPC.swift; sourceTree = "<group>"; };
 		49E33DFB2BCB1E4E00713ABF /* NewNPCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNPCView.swift; sourceTree = "<group>"; };
 		49E33DFD2BCB4F0F00713ABF /* CharacterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCardView.swift; sourceTree = "<group>"; };
@@ -207,7 +207,6 @@
 				497D7FCA2BD1D38E003DA66E /* FCLLocationManagerDelegate.swift */,
 				497D7FCE2BD1D546003DA66E /* LocationDelegateReducer.swift */,
 				497D7FD22BD2DC52003DA66E /* BLEPeripheralDelegateReducer.swift */,
-				499E5B762BD30B53003AC672 /* CentralReducerExtension.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -327,6 +326,7 @@
 				49889AB72BC23F2E00B8F15B /* CharCountTests.swift */,
 				49889B122BC9EA7800B8F15B /* HitPointsTests.swift */,
 				49889B142BC9EEA900B8F15B /* CharacterListTests.swift */,
+				4917E2202BDD440B006B92A8 /* GameTests.swift */,
 			);
 			path = CharCountTests;
 			sourceTree = "<group>";
@@ -562,7 +562,6 @@
 				49889AEE2BC312A000B8F15B /* CharacterDetailReducer.swift in Sources */,
 				49889AF62BC312A000B8F15B /* EditCharacterView.swift in Sources */,
 				49889B172BC9FC6800B8F15B /* SplashView.swift in Sources */,
-				499E5B772BD30B53003AC672 /* CentralReducerExtension.swift in Sources */,
 				4917E21D2BD6CA4A006B92A8 /* ManualCharacterCardView.swift in Sources */,
 				497D7FBB2BD18FD3003DA66E /* Game.swift in Sources */,
 				497D7FC32BD18FE8003DA66E /* GameListReducer.swift in Sources */,
@@ -581,6 +580,7 @@
 				49889B152BC9EEA900B8F15B /* CharacterListTests.swift in Sources */,
 				49889B132BC9EA7800B8F15B /* HitPointsTests.swift in Sources */,
 				49889AB82BC23F2E00B8F15B /* CharCountTests.swift in Sources */,
+				4917E2212BDD440B006B92A8 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,12 +734,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"CharCount/Preview Content\"";
 				DEVELOPMENT_TEAM = HK6WSAR793;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CharCount/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "D&D Characters";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
@@ -757,7 +758,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = co.lithobyte.CharCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -772,12 +773,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"CharCount/Preview Content\"";
 				DEVELOPMENT_TEAM = HK6WSAR793;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CharCount/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "D&D Characters";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow us to find games for you to join in your immediate vicinity.";
@@ -795,7 +797,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = co.lithobyte.CharCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

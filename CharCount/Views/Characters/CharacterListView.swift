@@ -20,7 +20,6 @@ struct CharacterListView<RowContent: View,
     let editContent: (StoreOf<EditCharacterReducer>) -> EditContent
     
     var body: some View {
-        WithPerceptionTracking {
             NavigationStack {
                 List {
                     if self.store.displayedCharacterStates.count > 0 {
@@ -50,7 +49,7 @@ struct CharacterListView<RowContent: View,
                     }
                 }
                 .navigationTitle(title)
-                .toolbar(content: {
+                .toolbar {
                     HStack {
                         Spacer()
                         Button(action: { store.send(.addNewTapped) }, label: {
@@ -60,7 +59,7 @@ struct CharacterListView<RowContent: View,
                             Image(systemName: "person.3.fill")
                         })
                     }
-                })
+                }
                 .onAppear {
                     store.send(.didAppear)
                 }
@@ -68,13 +67,7 @@ struct CharacterListView<RowContent: View,
                     detailsContent(store)
                 }
                 .navigationDestination(item: $store.scope(state: \.games, action: \.games)) { store in
-                    GameListView(
-                        title: "Games",
-                        store: store,
-                        rowContent: GameRowView.init,
-                        detailsContent: GameView.init,
-                        editContent: EditGameView.init
-                    )
+                    GameListView(store: store)
                 }
                 .sheet(item: $store.scope(state: \.new, action: \.new)) { editStore in
                     NavigationStack {
@@ -110,7 +103,6 @@ struct CharacterListView<RowContent: View,
                 store.send(.didChangeScenePhase)
             }
 //            .accentColor(LinearGradient(gradient: Gradient(colors: [.accent, .indigo]), startPoint: .leading, endPoint: .trailing))
-        }
     }
 }
 
@@ -119,7 +111,7 @@ struct CharacterListView<RowContent: View,
         title: "Characters",
         store: Store(
             initialState: CharacterListReducer.State(
-                allCharacters: IdentifiedArray(uniqueElements: []),
+                allCharacters: IdentifiedArray(uniqueElements: [bekri, rowaren, rieta, nociel, jollian, haalgar, tasirinn, sosira, adeleor, beolac, ludreau, narak]),
                 characterToItemState: { $0 }
             ),
             reducer: CharacterListReducer.init),

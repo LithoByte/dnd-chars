@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import ComposableArchitecture
 
 @Reducer
@@ -25,7 +26,7 @@ struct GameReducer {
         }
     }
     
-    enum Action: BindableAction {
+    enum Action: BindableAction, Equatable {
         case binding(BindingAction<State>)
         case creature(CardReducer.State.ID, CardReducer.Action)
         case onAppear
@@ -36,6 +37,7 @@ struct GameReducer {
         case move(IndexSet, Int)
         case delete(IndexSet)
         case adjustHitPointsTapped
+        case didChangeScenePhase(ScenePhase)
         case advertiser(BLEPeripheralManagerReducer.Action)
         case editNPC(NewNPCReducer.Action)
         case editSource(EditSourceReducer.Action)
@@ -56,6 +58,12 @@ struct GameReducer {
                 return .send(.advertiser(.startAdvertising))
             case .advertiser(.delegate(.didAdd(let character))):
                 state.allCreatures.append(CardReducer.State(character: character))
+            case .didChangeScenePhase(let newScenePhase):
+                if newScenePhase != .active {
+                    return .send(.advertiser(.stopAdvertising))
+                } else {
+                    return .send(.advertiser(.startAdvertising))
+                }
             case .adjustHitPointsTapped:
                 state.editPoints = EditPointsReducer.State(sources: state.allCreatures.compactMap { $0.npc }.map { ChecklistItem(title: $0.name) }.reversed())
             case .addNewNPCTapped:

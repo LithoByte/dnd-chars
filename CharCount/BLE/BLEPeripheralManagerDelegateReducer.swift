@@ -17,24 +17,24 @@ struct BLEPeripheralManagerDelegateReducer {
         var peripheralDelegate = FCBPeripheralManagerDelegate()
     }
     
-    enum Action {
+    enum Action: Equatable {
         case initialize
         case delegate(Delegate)
         
-        enum Delegate {
+        enum Delegate: Equatable {
             case didInitialize
             
             case onDidUpdateState(CBPeripheralManager)
-            case onWillRestoreState(CBPeripheralManager, [String:Any])
-            case onDidStartAdvertising(CBPeripheralManager, Error?)
-            case onDidAddService(CBPeripheralManager, CBService, Error?)
+//            case onWillRestoreState(CBPeripheralManager, [String:Any])
+            case onDidStartAdvertising(CBPeripheralManager, NSError?)
+            case onDidAddService(CBPeripheralManager, CBService, NSError?)
             case onDidSubscribeToCharacteristic(CBPeripheralManager, CBCentral, CBCharacteristic)
             case onDidUnsubscribeFromCharacteristic(CBPeripheralManager, CBCentral, CBCharacteristic)
             case onDidReceiveRead(CBPeripheralManager, CBATTRequest)
             case onDidReceiveWrite(CBPeripheralManager, [CBATTRequest])
             case onPeripheralManagerReady(CBPeripheralManager)
-            case onDidPublishL2CAPChannel(CBPeripheralManager, CBL2CAPPSM, Error?)
-            case onDidUnpublishL2CAPChannel(CBPeripheralManager, CBL2CAPPSM, Error?)
+            case onDidPublishL2CAPChannel(CBPeripheralManager, CBL2CAPPSM, NSError?)
+            case onDidUnpublishL2CAPChannel(CBPeripheralManager, CBL2CAPPSM, NSError?)
         }
     }
     
@@ -64,19 +64,19 @@ struct BLEPeripheralManagerDelegateReducer {
                 await send(.delegate(.onDidUpdateState(peripheralManager)))
             }
         }
-        peripheralDelegate.onWillRestoreState = { peripheralManager, dict in
-            Task {
-                await send(.delegate(.onWillRestoreState(peripheralManager, dict)))
-            }
-        }
+//        peripheralDelegate.onWillRestoreState = { peripheralManager, dict in
+//            Task {
+//                await send(.delegate(.onWillRestoreState(peripheralManager, dict)))
+//            }
+//        }
         peripheralDelegate.onDidStartAdvertising = { peripheralManager, error in
             Task {
-                await send(.delegate(.onDidStartAdvertising(peripheralManager, error)))
+                await send(.delegate(.onDidStartAdvertising(peripheralManager, error as NSError?)))
             }
         }
         peripheralDelegate.onDidAddService = { peripheralManager, service, error in
             Task {
-                await send(.delegate(.onDidAddService(peripheralManager, service, error)))
+                await send(.delegate(.onDidAddService(peripheralManager, service, error as NSError?)))
             }
         }
         peripheralDelegate.onDidSubscribeToCharacteristic = { peripheralManager, central, characteristic in

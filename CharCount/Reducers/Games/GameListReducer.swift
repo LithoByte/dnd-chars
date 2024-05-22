@@ -28,8 +28,8 @@ struct GameListReducer {
             return IdentifiedArray(uniqueElements: displayedGames.map { gameToItemState($0) })
         }
         var localFilter = ""
-        @Presents var new: EditGameReducer.State?
-        @Presents var edit: EditGameReducer.State?
+        var new: EditGameReducer.State?
+        var edit: EditGameReducer.State?
         @Presents var details: GameReducer.State?
         @Presents var tabs: TabsReducer.State?
         @Presents var choose: CharacterChooserReducer.State?
@@ -38,6 +38,10 @@ struct GameListReducer {
         
         var gameToItemState: (Game) -> GameItemReducer.State
         var gameToSearchableString: ((Game) -> String)?
+        
+        var shouldBlur: Bool {
+            return new != nil || edit != nil
+        }
         
         static func == (lhs: GameListReducer.State, rhs: GameListReducer.State) -> Bool {
             return lhs.allGames == rhs.allGames
@@ -58,7 +62,7 @@ struct GameListReducer {
         }
     }
     
-    enum Action: BindableAction {
+    enum Action: BindableAction, Equatable {
         case addNewTapped
         case requestBle
         case onAppear
@@ -68,7 +72,7 @@ struct GameListReducer {
         
         case binding(BindingAction<State>)
         case game(GameItemReducer.State.ID, GameItemReducer.Action)
-        case edit(PresentationAction<EditGameReducer.Action>)
+        case edit(EditGameReducer.Action)
         case details(PresentationAction<GameReducer.Action>)
         case detector(GameDetectorReducer.Action)
         case choose(PresentationAction<CharacterChooserReducer.Action>)
@@ -112,6 +116,8 @@ struct GameListReducer {
                 if let game = state.allGames[id: id] {
                     if game.isCreator {
                         state.details = GameReducer.State(game: game, allCreatures: IdentifiedArray(uniqueElements: []))
+                    } else if loadData().count == 1 {
+                        return .send(.detector(.join(game, loadData().first!)))
                     } else {
                         // choose your character
                         state.chosenGame = game
@@ -141,10 +147,10 @@ struct GameListReducer {
             }
             return .none
         }
-        .ifLet(\.$new, action: \.edit) {
+        .ifLet(\.new, action: \.edit) {
             EditGameReducer()
         }
-        .ifLet(\.$edit, action: \.edit) {
+        .ifLet(\.edit, action: \.edit) {
             EditGameReducer()
         }
         .ifLet(\.$details, action: \.details) {

@@ -24,14 +24,14 @@ struct BLEPeripheralManagerReducer {
         var isInitialized = false
     }
     
-    enum Action {
+    enum Action: Equatable {
         case initialize
         case startAdvertising
         case stopAdvertising
         case peripheralDelegate(BLEPeripheralManagerDelegateReducer.Action)
         case delegate(Delegate)
         
-        enum Delegate {
+        enum Delegate: Equatable {
             case didInitialize
             case didAdd(Character)
         }
@@ -60,7 +60,6 @@ struct BLEPeripheralManagerReducer {
                 state.peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [service.uuid]])
             case .stopAdvertising:
                 state.peripheralManager.stopAdvertising()
-                
             case .peripheralDelegate(.delegate(.onDidUpdateState(let manager))):
                 if manager.state == .poweredOn {
                     state.isInitialized = state.peripheralManager != nil && state.peripheralDelegateState.peripheralDelegate != nil
@@ -78,6 +77,7 @@ struct BLEPeripheralManagerReducer {
             case .peripheralDelegate(.delegate(.onDidReceiveWrite(_, let requests))):
                 if let request = requests.first {
                     if let data = request.value, let cardCharacter = try? Current.apiJsonDecoder.decode(CardCharacter.self, from: data) {
+                        state.game.playerCount += 1
                         return .send(.delegate(.didAdd(Character.fromCard(cardCharacter))))
                     }
                 }

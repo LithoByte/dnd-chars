@@ -17,19 +17,19 @@ struct BLEPeripheralDelegateReducer {
         var peripheralDelegate = FCBPeripheralDelegate()
     }
     
-    enum Action {
+    enum Action: Equatable {
         case initialize
         case delegate(Delegate)
         
-        enum Delegate {
+        enum Delegate: Equatable {
             case didInitialize
             
-            case onDidDiscoverServices(CBPeripheral, Error?)
-            case onDidWriteValueFor(CBPeripheral, CBCharacteristic, Error?)
-            case onDidDiscoverCharacteristicsFor(CBPeripheral, CBService, Error?)
+            case onDidDiscoverServices(CBPeripheral, NSError?)
+            case onDidWriteValueFor(CBPeripheral, CBCharacteristic, NSError?)
+            case onDidDiscoverCharacteristicsFor(CBPeripheral, CBService, NSError?)
             case onDidModifyServices(CBPeripheral, [CBService])
             case onDidUpdateName(CBPeripheral)
-            case onDidUpdateValueFor(CBPeripheral, CBCharacteristic, Error?)
+            case onDidUpdateValueFor(CBPeripheral, CBCharacteristic, NSError?)
             case onIsReady(CBPeripheral)
         }
     }
@@ -52,17 +52,17 @@ struct BLEPeripheralDelegateReducer {
     private func onTask(_ peripheralDelegate: FCBPeripheralDelegate, send: Send<Action>) async throws {
         peripheralDelegate.onDidDiscoverServices = { peripheral, error in
             Task {
-                await send(.delegate(.onDidDiscoverServices(peripheral, error)))
+                await send(.delegate(.onDidDiscoverServices(peripheral, error as NSError?)))
             }
         }
         peripheralDelegate.onDidWriteValueFor = { peripheral, characteristic, error in
             Task {
-                await send(.delegate(.onDidWriteValueFor(peripheral, characteristic, error)))
+                await send(.delegate(.onDidWriteValueFor(peripheral, characteristic, error as NSError?)))
             }
         }
         peripheralDelegate.onDidDiscoverCharacteristicsFor = { peripheral, characteristic, error in
             DispatchQueue.main.async {
-                send(.delegate(.onDidDiscoverCharacteristicsFor(peripheral, characteristic, error)))
+                send(.delegate(.onDidDiscoverCharacteristicsFor(peripheral, characteristic, error as NSError?)))
             }
         }
         peripheralDelegate.onDidModifyServices = { peripheral, error in
@@ -77,7 +77,7 @@ struct BLEPeripheralDelegateReducer {
         }
         peripheralDelegate.onDidUpdateValueFor = { peripheral, characteristic, error in
             Task {
-                await send(.delegate(.onDidUpdateValueFor(peripheral, characteristic, error)))
+                await send(.delegate(.onDidUpdateValueFor(peripheral, characteristic, error as NSError?)))
             }
         }
         peripheralDelegate.onIsReady = { peripheral in

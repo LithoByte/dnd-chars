@@ -10,18 +10,12 @@ import ComposableArchitecture
 import CoreBluetooth
 
 let listMargin: CGFloat = 16
-struct GameListView<RowContent: View,
-                       EditContent: View,
-                       DetailsContent: View>: View {
-    @Environment(\.scenePhase) var scenePhase
-    let title: String
+struct GameListView: View {
     @Bindable var store: StoreOf<GameListReducer>
-    let rowContent: (StoreOf<GameItemReducer>) -> RowContent
-    let detailsContent: (StoreOf<GameReducer>) -> DetailsContent
-    let editContent: (StoreOf<EditGameReducer>) -> EditContent
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
-        WithPerceptionTracking {
+        ZStack {
             List {
                 if CBCentralManager.authorization == .notDetermined {
                     VStack(alignment: .center) {
@@ -45,7 +39,7 @@ struct GameListView<RowContent: View,
                     DeniedBluetooth()
                 } else if store.displayedGameStates.count > 0 {
                     ForEachStore(self.store.scope(state: \.displayedGameStates, action: GameListReducer.Action.game(_:_:))) { gameStore in
-                        rowContent(gameStore)
+                        GameRowView(store: gameStore)
                     }
                 } else {
                     VStack(alignment: .center) {
@@ -67,64 +61,85 @@ struct GameListView<RowContent: View,
                 }
             }
             .searchable(text: $store.localFilter)
-            .navigationTitle("Games")
-            .toolbar(content: {
+            .navigationTitle("Games Nearby")
+            .toolbar {
                 HStack {
                     Spacer()
                     Button(action: { store.send(.addNewTapped) }, label: {
                         Image(systemName: "plus")
                     })
                 }
-            })
-            .navigationDestination(item: $store.scope(state: \.details, action: \.details)) { store in
-                detailsContent(store)
             }
-            .navigationDestination(item: $store.scope(state: \.tabs, action: \.tabs)) { store in
-                TabsView(store: store)
-            }
-            .sheet(item: $store.scope(state: \.new, action: \.edit)) { editStore in
-                NavigationStack {
-                    editContent(editStore)
-                        .toolbar(content: {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel") { store.send(.cancelGame) }
-                            }
-                            ToolbarItem(placement: .primaryAction) {
-                                Button("Save") { store.send(.saveGame) }
-                            }
-                        })
-                        .navigationTitle("New Game")
+            .blur(radius: (store.shouldBlur ? 5 : 0))
+            
+            IfLetStore(store.scope(state: \.new, action: \.edit)) { editStore in
+                Spacer()
+                VStack {
+                    EditGameView(store: editStore)
+                    HStack {
+                        Button(action: { store.send(.cancelGame) }) {
+                            Text("Cancel")
+                                .padding()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 1)
+                        }
+                        .padding()
+                        
+                        Button(action: { store.send(.saveGame) }) {
+                            Text("Save")
+                                .padding()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 1)
+                        }
+                        .padding()
+                    }
                 }
+                .padding()
+                .background(Color(UIColor.systemBackground))
+                .cornerRadius(8)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 1)
+                }
+                .padding()
+                Spacer()
             }
-            .sheet(item: $store.scope(state: \.choose, action: \.choose), content: { chooseStore in
-                CharacterChooserView(store: chooseStore)
-            })
-            .onAppear {
-                store.send(.onAppear)
-            }
-            .onDisappear {
-                store.send(.onDisappear)
-            }
-            .onChange(of: scenePhase) { newScenePhase in
-                store.send(.didChangeScenePhase(newScenePhase))
-            }
+        }
+        .navigationDestination(item: $store.scope(state: \.details, action: \.details)) { store in
+            GameView(store: store)
+        }
+        .navigationDestination(item: $store.scope(state: \.tabs, action: \.tabs)) { store in
+            TabsView(store: store)
+        }
+        .sheet(item: $store.scope(state: \.choose, action: \.choose), content: { chooseStore in
+            CharacterChooserView(store: chooseStore)
+        })
+        .onAppear {
+            store.send(.onAppear)
+        }
+        .onDisappear {
+            store.send(.onDisappear)
+        }
+        .onChange(of: scenePhase) { newScenePhase in
+            store.send(.didChangeScenePhase(newScenePhase))
         }
     }
 }
 
+let previewGames = [Game(name: "Oshland", playerCount: 1), Game(name: "Graywall", playerCount: 3), Game(name: "Dawn", playerCount: 3), Game(name: "The Adjusters", playerCount: 5), Game(name: "High Five Heroes", playerCount: 6)]
+
 #Preview {
     NavigationStack {
         GameListView(
-            title: "Games",
             store: Store(
                 initialState: GameListReducer.State(
-                    allGames: IdentifiedArray(uniqueElements: [Game(name: "Elliot's game")]),
+                    allGames: IdentifiedArray(uniqueElements: previewGames),
                     gameToItemState: { $0 }
                 ),
-                reducer: GameListReducer.init),
-            rowContent: GameRowView.init,
-            detailsContent: GameView.init,
-            editContent: EditGameView.init
+                reducer: GameListReducer.init)
         )
     }
 }

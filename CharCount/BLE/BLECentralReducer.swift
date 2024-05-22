@@ -19,14 +19,14 @@ struct BLECentralReducer {
         var centralDelegate = FCBCentralManagerDelegate()
     }
     
-    enum Action {
+    enum Action: Equatable {
         case initialize
         case delegate(Delegate)
         
-        enum Delegate {
+        enum Delegate: Equatable {
             case didInitialize
             case onCentralManagerDidUpdateState(CBCentralManager)
-            case onWillRestoreState(CBCentralManager, [String: Any])
+//            case onWillRestoreState(CBCentralManager, [String: Any])
             case onDidDiscoverPeripheral(CBCentralManager, CBPeripheral)
             case onDidConnect(CBCentralManager, CBPeripheral)
             case onDidFailToConnect(CBCentralManager, CBPeripheral, NSError?)
@@ -85,12 +85,12 @@ struct BLECentralReducer {
                     send(.delegate(.onCentralManagerDidUpdateState(centralManager)))
                 }
             }
-        centralDelegate.onWillRestoreState = { centralManager, dict in
-            print("central restore")
-            Task {
-                send(.delegate(.onWillRestoreState(centralManager, dict)))
-            }
-        }
+//        centralDelegate.onWillRestoreState = { centralManager, dict in
+//            print("central restore")
+//            Task {
+//                send(.delegate(.onWillRestoreState(centralManager, dict)))
+//            }
+//        }
         centralDelegate.onConnectionEventForPeripheral = { centralManager, event, peripheral in
             DispatchQueue.main.async {
                 send(.delegate(.onConnectionEventForPeripheral(centralManager, event, peripheral)))

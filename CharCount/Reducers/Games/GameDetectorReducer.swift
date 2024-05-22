@@ -24,7 +24,7 @@ struct GameDetectorReducer {
         var chosenCharacter: Character?
     }
     
-    enum Action {
+    enum Action: Equatable {
         case initialize
         case startDetecting
         case stopDetecting
@@ -33,7 +33,7 @@ struct GameDetectorReducer {
         case peripheralDelegate(BLEPeripheralDelegateReducer.Action)
         case delegate(Delegate)
         
-        enum Delegate {
+        enum Delegate: Equatable {
             case didInitialize
             case didDetectGames([Game])
         }
@@ -78,12 +78,12 @@ struct GameDetectorReducer {
                     state.status = "powered on, scanning"
                     state.centralManager.scanForPeripherals(withServices: [CBUUID(string: serviceUuid)])
                 }
-            case .centralDelegate(.delegate(.onWillRestoreState(let central, _))):
-                if central.state == .poweredOn {
-                    state.centralManager.scanForPeripherals(withServices: [CBUUID(string: serviceUuid)])
-                } else {
-                    
-                }
+//            case .centralDelegate(.delegate(.onWillRestoreState(let central, _))):
+//                if central.state == .poweredOn {
+//                    state.centralManager.scanForPeripherals(withServices: [CBUUID(string: serviceUuid)])
+//                } else {
+//                    
+//                }
             case .centralDelegate(.delegate(.onDidDiscoverPeripheral(let manager, let peripheral))):
                 state.status = "discovered peripheral"
                 if let current = state.currentPeripheral, current.state != .connecting && current.state != .connected {

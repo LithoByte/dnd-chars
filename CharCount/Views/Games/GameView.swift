@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct GameView: View {
+    @Environment(\.scenePhase) var scenePhase
     @Bindable var store: StoreOf<GameReducer>
     
     var body: some View {
@@ -46,14 +47,14 @@ struct GameView: View {
                 }
                 .listStyle(.plain)
                 .navigationTitle(store.game.name)
-                .toolbar(content: {
+                .toolbar {
                     HStack {
                         Spacer()
                         Button(action: { store.send(.addNewNPCTapped) }, label: {
                             Image(systemName: "plus")
                         })
                     }
-                })
+                }
                 
                 if store.allCreatures.count > 0 {
                     Button(action: { store.send(.adjustHitPointsTapped) }) {
@@ -96,6 +97,9 @@ struct GameView: View {
             .onDisappear(perform: {
                 store.send(.advertiser(.stopAdvertising))
             })
+            .onChange(of: scenePhase) { newScenePhase in
+                store.send(.didChangeScenePhase(newScenePhase))
+            }
             .blur(radius: (store.shouldBlur ? 5 : 0))
             
             IfLetStore(store.scope(state: \.editNPC, action: \.editNPC)) { editStore in
@@ -213,7 +217,8 @@ struct GameView: View {
     }
 }
 
-let creatures = [CardReducer.State(character: bekri), CardReducer.State(npc: archer), CardReducer.State(character: rieta), CardReducer.State(character: beolac)]
+let creatures = [CardReducer.State(character: bekri), CardReducer.State(npc: archer), CardReducer.State(character: rieta), CardReducer.State(character: beolac), CardReducer.State(character: bekri), CardReducer.State(character: rowaren), CardReducer.State(character: adeleor), CardReducer.State(character: nociel)]
+
 #Preview {
     NavigationStack {
         GameView(store: Store(initialState: GameReducer.State(game: Game(name: "Elliot's Game"), allCreatures: IdentifiedArray(uniqueElements: creatures)), reducer: GameReducer.init))

@@ -12,16 +12,16 @@ struct GameRowView: View {
     @Bindable var store: StoreOf<GameItemReducer>
     
     var body: some View {
-        WithPerceptionTracking {
-            HStack {
-                Text(store.name).padding()
-                Spacer()
-                Text("\(store.playerCount) player(s)")
-            }
-            .frame(maxWidth: .infinity)
-            .onTapGesture {
-                store.send(.didTap)
-            }
+        HStack {
+            Text(store.name)
+            Spacer()
+            Text("\(store.playerCount) player\(store.playerCount == 1 ? "" : "s")")
+                .foregroundStyle(.secondary)
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .onTapGesture {
+            store.send(.didTap)
         }
     }
 }

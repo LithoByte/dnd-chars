@@ -9,25 +9,29 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CharacterRowView: View {
-    var store: StoreOf<CharacterItemReducer>
+    @Bindable var store: StoreOf<CharacterItemReducer>
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
             HStack {
-                Text(viewStore.name)
+                VStack(alignment: .leading) {
+                    Text(store.name)
+                    Text("\(store.levels.map { $0.classEnum.rawValue }.joined(separator: "/"))")
+                        .foregroundStyle(.secondary)
+                }
                 Spacer()
+                Text("lvl \(store.levels.map { $0.count }.reduce(0, +))")
+                    .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity)
             .onTapGesture {
                 store.send(.didTap)
             }
             .swipeActions(edge: .leading) {
-                Button { viewStore.send(.edit) } label: {
+                Button { store.send(.edit) } label: {
                     Label("Edit", systemImage: "")
                 }
                 .tint(.accentColor)
             }
-        }
     }
 }
 
